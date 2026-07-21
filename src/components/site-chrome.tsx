@@ -121,7 +121,7 @@ export function Header() {
         {/* Right side Profile */}
         <div className="flex items-center gap-2">
           {user ? (
-            <div className="relative group">
+            <div className="relative group h-full flex items-center">
               <button className="flex items-center gap-2 rounded-xl border border-fog bg-secondary px-3 py-2 text-sm font-medium text-ink transition hover:border-brand">
                 {user.avatar ? (
                   <img src={user.avatar} alt={user.name} className="h-6 w-6 rounded-full object-cover" />
@@ -130,8 +130,8 @@ export function Header() {
                 )}
                 <span className="hidden md:inline max-w-24 truncate">{user.name.split(" ")[0]}</span>
               </button>
-              <div className="absolute right-0 top-full mt-0 hidden pt-2 w-64 group-hover:block z-50">
-                <div className="rounded-2xl border border-fog bg-white py-2 shadow-elevated">
+              <div className="absolute right-0 top-full -mt-2 hidden pt-4 w-64 group-hover:block z-50">
+                <div className="rounded-2xl border border-fog bg-white py-2 shadow-elevated relative">
                   <div className="px-4 py-3 text-sm text-slate-token border-b border-fog mb-2">
                     Entre para ver seus favoritos, visitas, propostas e aluguéis
                   </div>
@@ -164,12 +164,12 @@ export function Header() {
               </div>
             </div>
           ) : (
-            <div className="relative group">
+            <div className="relative group h-full flex items-center">
               <button className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-ink transition hover:bg-secondary">
                 Entrar
               </button>
-              <div className="absolute right-0 top-full mt-0 hidden pt-2 w-72 group-hover:block z-50">
-                <div className="rounded-2xl border border-fog bg-white py-4 px-4 shadow-elevated">
+              <div className="absolute right-0 top-full -mt-2 hidden pt-4 w-72 group-hover:block z-50">
+                <div className="rounded-2xl border border-fog bg-white py-4 px-4 shadow-elevated relative">
                   <div className="text-sm text-slate-token mb-4">
                     Entre para ver seus favoritos, visitas, propostas e aluguéis
                   </div>
@@ -243,26 +243,41 @@ export function WhatsAppButton() {
 
 const footerLinks = [
   {
-    title: "Descobrir",
+    title: "Encontre seu imóvel",
     links: [
-      { label: "Alugar", to: "/search" },
-      { label: "Comprar", to: "/search" },
+      { label: "Alugar", to: "/search", search: { mode: "rent" } },
+      { label: "Comprar", to: "/search", search: { mode: "buy" } },
       { label: "Lançamentos", to: "/lancamentos" },
       { label: "Tour Virtual", to: "/tour-virtual" },
+      { label: "Explorar condomínios", to: "/" },
     ],
   },
   {
-    title: "Empresa",
+    title: "Anunciar",
     links: [
-      { label: "Sobre nós", to: "/sobre" },
-      { label: "Anunciar imóvel", to: "/anunciar" },
-      { label: "Corretor parceiro", to: "/corretor-parceiro" },
+      { label: "Alugar meu imóvel", to: "/anunciar" },
+      { label: "Vender meu imóvel", to: "/anunciar" },
+      { label: "Para imobiliárias parceiras", to: "/corretor-parceiro" },
+      { label: "Área do proprietário", to: "/" },
+      { label: "Indicar imóveis", to: "/" },
     ],
   },
   {
-    title: "Suporte",
+    title: "Inteligência & Utilidades",
+    links: [
+      { label: "Calculadora de aluguel", to: "/" },
+      { label: "Calculadora de venda", to: "/" },
+      { label: "Área MeuImóvel", to: "/" },
+      { label: "Índices de reajuste", to: "/" },
+      { label: "Valor do metro quadrado", to: "/" },
+      { label: "Lei do Inquilinato", to: "/" },
+    ],
+  },
+  {
+    title: "Suporte e Institucional",
     links: [
       { label: "Central de ajuda", to: "/central-de-ajuda" },
+      { label: "Sobre nós", to: "/sobre" },
       { label: "Segurança", to: "/seguranca" },
       { label: "Termos de uso", to: "/termos" },
       { label: "Privacidade", to: "/privacidade" },
