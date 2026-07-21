@@ -139,5 +139,5 @@ export function MapView({ properties, selected, onSelect }: Props) {
     });
   }, [selected]);
 
-  return <div ref={containerRef} className="h-full w-full" />;
+  return <div ref={containerRef} className="absolute inset-0 z-0" />;
 }
