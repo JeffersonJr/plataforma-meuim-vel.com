@@ -5,7 +5,8 @@ import { Header, Footer, WhatsAppButton } from "@/components/site-chrome";
 import { SeoLinks } from "@/components/seo-links";
 import { SearchBar, QuickBadges } from "@/components/search-bar";
 import { PropertyCard } from "@/components/property-card";
-import { ArrowRight, ShieldCheck, Sparkles, Clock, MapPinned } from "lucide-react";
+import { ArrowRight, ShieldCheck, Sparkles, Clock, MapPinned, Search, Percent, HandCoins, KeySquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,71 +27,125 @@ function Home() {
     <div className="min-h-screen bg-white">
       <Header />
 
-      {/* Hero — full bleed with card on the right like Quinto Andar */}
-      <section className="relative overflow-hidden min-h-[88vh] flex items-center">
-        {/* Background photo */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=2000&q=80')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        />
-        {/* Gradient overlay — lighter on right so card pops */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand/80 via-brand/40 to-transparent" />
+      {/* Hero — Quinto Andar Style */}
+      <section className="relative overflow-hidden min-h-[90vh] flex items-center bg-secondary">
+        {/* Background photo - Family */}
+        <div className="absolute inset-0 lg:left-1/3 lg:inset-y-0 lg:right-0">
+          <img
+            src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=2000&q=80"
+            alt="Família na mesa do café da manhã"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/80 to-transparent lg:via-secondary/20" />
+        </div>
 
-        <div className="container-page relative z-10 flex flex-col items-start justify-between gap-12 py-20 lg:flex-row lg:items-center">
-          {/* Left — headline */}
-          <div className="max-w-xl text-white lg:flex-1">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs backdrop-blur mb-6">
-              <Sparkles className="h-3.5 w-3.5 text-amber" /> Novidade — Tour virtual em todos os anúncios verificados
+        <div className="container-page relative z-10 flex flex-col items-start justify-center py-20 min-h-screen lg:min-h-[90vh]">
+          <SearchBar />
+        </div>
+      </section>
+
+      {/* Quinto Andar Banners Section */}
+      <section className="container-page py-16 grid gap-6">
+        
+        {/* Banner 1: Consórcio */}
+        <div className="rounded-3xl bg-[#09153D] overflow-hidden flex flex-col md:flex-row shadow-soft group cursor-pointer hover:shadow-elevated transition-shadow">
+          <div className="flex-1 p-10 md:p-14 flex flex-col justify-center">
+            <span className="text-white/70 text-sm font-medium uppercase tracking-wider mb-4">Novidade</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-8">
+              Consórcio MeuImóvel com parcelas reduzidas em 40% até a contemplação
+            </h2>
+            <div className="w-max bg-white text-ink font-bold px-6 py-3 rounded-full text-sm group-hover:bg-fog transition-colors">
+              Simular agora
             </div>
-            <h1 className="text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
-              Alugue um lar<br />
-              <span className="text-mint">para chamar<br />de seu</span>
-            </h1>
-            <p className="mt-5 text-lg text-white/80 max-w-md">
-              Mais de 125 mil imóveis verificados em todo o Brasil. Busque no mapa, faça tour virtual e agende visitas em segundos.
+          </div>
+          <div className="md:w-[45%] h-64 md:h-auto overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="Chaves do imóvel" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+        </div>
+
+        {/* Banner 2: Alugar bem */}
+        <div className="rounded-3xl bg-[#E8D9E8] overflow-hidden flex flex-col md:flex-row shadow-soft group cursor-pointer hover:shadow-elevated transition-shadow">
+          <div className="flex-1 p-10 md:p-14 flex flex-col justify-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink leading-tight mb-4">
+              Alugar bem, sem complicação e fiador
+            </h2>
+            <p className="text-ink/80 text-lg mb-8 max-w-sm">
+              Alugue seu lar sem burocracia, com garantia locatícia do MeuImóvel e aprovação em minutos.
             </p>
-
-            {/* Stats */}
-            <div className="mt-10 flex gap-8 border-t border-white/20 pt-6">
-              {[
-                { k: "125k+", l: "Imóveis" },
-                { k: "4.9★", l: "Avaliação" },
-                { k: "24h", l: "Resposta" },
-              ].map((s) => (
-                <div key={s.l}>
-                  <div className="text-2xl font-bold">{s.k}</div>
-                  <div className="text-xs text-white/70">{s.l}</div>
-                </div>
-              ))}
+            <div className="w-max bg-white border border-fog text-ink font-bold px-6 py-3 rounded-full text-sm group-hover:bg-fog transition-colors">
+              Buscar imóveis para alugar
             </div>
+          </div>
+          <div className="md:w-[50%] h-64 md:h-auto overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80" alt="Casal na sala" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute top-6 right-6 bg-white p-4 rounded-2xl shadow-elevated flex items-center gap-3">
+              <KeySquare className="text-brand h-6 w-6" />
+              <div className="text-sm font-bold text-ink">Chaves na mão<br/>em até 3 dias</div>
+            </div>
+          </div>
+        </div>
 
-            <QuickBadges />
+        {/* Banner 3: Casas à venda */}
+        <div className="rounded-3xl bg-[#E6E1D6] overflow-hidden flex flex-col md:flex-row shadow-soft group cursor-pointer hover:shadow-elevated transition-shadow">
+          <div className="md:w-[45%] h-64 md:h-auto overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Casa" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <div className="flex-1 p-10 md:p-14 flex flex-col justify-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-ink leading-tight mb-4">
+              Comprar seu imóvel e ter um cantinho só seu
+            </h2>
+            <p className="text-ink/80 text-lg mb-8 max-w-sm">
+              Milhares de casas e apartamentos com fotos profissionais e documentação verificada.
+            </p>
+            <div className="w-max bg-white border border-fog text-ink font-bold px-6 py-3 rounded-full text-sm group-hover:bg-fog transition-colors">
+              Ver imóveis à venda
+            </div>
+          </div>
+        </div>
+
+        {/* Row for Banner 4 and 5 */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Banner 4: Cashback */}
+          <div className="rounded-3xl bg-[#D6E4FF] overflow-hidden flex flex-col shadow-soft group cursor-pointer hover:shadow-elevated transition-shadow relative">
+            <div className="p-10 flex flex-col z-10 relative">
+              <h2 className="text-3xl font-bold text-ink leading-tight mb-4">
+                Conquistar um novo lar pagando menos
+              </h2>
+              <p className="text-ink/80 text-base mb-8 max-w-[80%]">
+                Receba 10% de cashback no primeiro aluguel em imóveis selecionados.
+              </p>
+              <div className="w-max bg-white border border-fog text-ink font-bold px-6 py-3 rounded-full text-sm group-hover:bg-fog transition-colors">
+                Buscar com cashback
+              </div>
+            </div>
+            <div className="h-48 mt-auto overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Sala de estar" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
           </div>
 
-          {/* Right — search card */}
-          <div className="w-full lg:w-[420px] lg:shrink-0">
-            {/* Card header like Quinto Andar */}
-            <div className="overflow-hidden rounded-3xl bg-white shadow-float">
-              <div className="px-6 pt-6 pb-2">
-                <h2 className="text-2xl font-bold text-ink leading-snug">
-                  Encontre seu<br />próximo lar
-                </h2>
+          {/* Banner 5: Financiamento */}
+          <div className="rounded-3xl bg-[#F6F4EE] overflow-hidden flex flex-col shadow-soft group cursor-pointer hover:shadow-elevated transition-shadow relative">
+            <div className="p-10 flex flex-col z-10 relative">
+              <span className="text-ink/60 font-bold uppercase tracking-wider text-xs mb-2">Nossos serviços</span>
+              <h2 className="text-3xl font-bold text-ink leading-tight mb-4">
+                Financie seu imóvel com nossa assessoria
+              </h2>
+              <p className="text-ink/80 text-base mb-8 max-w-[80%]">
+                Aprovamos seu crédito com as melhores taxas do mercado em até 24h.
+              </p>
+              <div className="w-max bg-white border border-fog text-ink font-bold px-6 py-3 rounded-full text-sm group-hover:bg-fog transition-colors">
+                Fazer simulação grátis
               </div>
-              <div className="px-4 pb-4">
-                <SearchBar />
-              </div>
+            </div>
+            <div className="h-48 mt-auto overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1560520031-3a4df4005288?auto=format&fit=crop&w=800&q=80" alt="Assinatura" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
           </div>
         </div>
       </section>
 
-
       {/* Value props */}
-      <section className="border-b border-fog bg-cream">
+      <section className="border-y border-fog bg-cream">
         <div className="container-page grid gap-6 py-10 md:grid-cols-4">
           {[
             { i: ShieldCheck, t: "Anúncios verificados", d: "Cada imóvel checado por nosso time." },

@@ -11,25 +11,36 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VisitasRouteImport } from './routes/visitas'
 import { Route as VenderMeuImovelRouteImport } from './routes/vender-meu-imovel'
+import { Route as ValorVenalRouteImport } from './routes/valor-venal'
+import { Route as ValorMetroQuadradoRouteImport } from './routes/valor-metro-quadrado'
+import { Route as UtilidadesRouteImport } from './routes/utilidades'
 import { Route as TourVirtualRouteImport } from './routes/tour-virtual'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as SejaCorretorRouteImport } from './routes/seja-corretor'
 import { Route as SegurancaRouteImport } from './routes/seguranca'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as RepassesRouteImport } from './routes/repasses'
 import { Route as PropostasRouteImport } from './routes/propostas'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LeiDoInquilinatoRouteImport } from './routes/lei-do-inquilinato'
 import { Route as LancamentosRouteImport } from './routes/lancamentos'
 import { Route as InteligenciaRouteImport } from './routes/inteligencia'
+import { Route as IndicesReajusteRouteImport } from './routes/indices-reajuste'
 import { Route as IndicarImoveisRouteImport } from './routes/indicar-imoveis'
+import { Route as GuiasRouteImport } from './routes/guias'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as EscrituraDoImovelRouteImport } from './routes/escritura-do-imovel'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DadosEIndicesRouteImport } from './routes/dados-e-indices'
 import { Route as CorretorParceiroRouteImport } from './routes/corretor-parceiro'
 import { Route as ContratosRouteImport } from './routes/contratos'
+import { Route as ContratoDeAluguelRouteImport } from './routes/contrato-de-aluguel'
 import { Route as CondominiosRouteImport } from './routes/condominios'
 import { Route as CentralDeAjudaRouteImport } from './routes/central-de-ajuda'
 import { Route as CalculadoraVendaRouteImport } from './routes/calculadora-venda'
+import { Route as CalculadoraIgpmRouteImport } from './routes/calculadora-igpm'
 import { Route as CalculadoraAluguelRouteImport } from './routes/calculadora-aluguel'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as AreaProprietarioRouteImport } from './routes/area-proprietario'
@@ -51,6 +62,21 @@ const VenderMeuImovelRoute = VenderMeuImovelRouteImport.update({
   path: '/vender-meu-imovel',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ValorVenalRoute = ValorVenalRouteImport.update({
+  id: '/valor-venal',
+  path: '/valor-venal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ValorMetroQuadradoRoute = ValorMetroQuadradoRouteImport.update({
+  id: '/valor-metro-quadrado',
+  path: '/valor-metro-quadrado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UtilidadesRoute = UtilidadesRouteImport.update({
+  id: '/utilidades',
+  path: '/utilidades',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TourVirtualRoute = TourVirtualRouteImport.update({
   id: '/tour-virtual',
   path: '/tour-virtual',
@@ -64,6 +90,11 @@ const TermosRoute = TermosRouteImport.update({
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SejaCorretorRoute = SejaCorretorRouteImport.update({
+  id: '/seja-corretor',
+  path: '/seja-corretor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SegurancaRoute = SegurancaRouteImport.update({
@@ -96,6 +127,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LeiDoInquilinatoRoute = LeiDoInquilinatoRouteImport.update({
+  id: '/lei-do-inquilinato',
+  path: '/lei-do-inquilinato',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LancamentosRoute = LancamentosRouteImport.update({
   id: '/lancamentos',
   path: '/lancamentos',
@@ -106,9 +142,19 @@ const InteligenciaRoute = InteligenciaRouteImport.update({
   path: '/inteligencia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndicesReajusteRoute = IndicesReajusteRouteImport.update({
+  id: '/indices-reajuste',
+  path: '/indices-reajuste',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndicarImoveisRoute = IndicarImoveisRouteImport.update({
   id: '/indicar-imoveis',
   path: '/indicar-imoveis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuiasRoute = GuiasRouteImport.update({
+  id: '/guias',
+  path: '/guias',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FavoritosRoute = FavoritosRouteImport.update({
@@ -116,9 +162,19 @@ const FavoritosRoute = FavoritosRouteImport.update({
   path: '/favoritos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EscrituraDoImovelRoute = EscrituraDoImovelRouteImport.update({
+  id: '/escritura-do-imovel',
+  path: '/escritura-do-imovel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DadosEIndicesRoute = DadosEIndicesRouteImport.update({
+  id: '/dados-e-indices',
+  path: '/dados-e-indices',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CorretorParceiroRoute = CorretorParceiroRouteImport.update({
@@ -129,6 +185,11 @@ const CorretorParceiroRoute = CorretorParceiroRouteImport.update({
 const ContratosRoute = ContratosRouteImport.update({
   id: '/contratos',
   path: '/contratos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContratoDeAluguelRoute = ContratoDeAluguelRouteImport.update({
+  id: '/contrato-de-aluguel',
+  path: '/contrato-de-aluguel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CondominiosRoute = CondominiosRouteImport.update({
@@ -144,6 +205,11 @@ const CentralDeAjudaRoute = CentralDeAjudaRouteImport.update({
 const CalculadoraVendaRoute = CalculadoraVendaRouteImport.update({
   id: '/calculadora-venda',
   path: '/calculadora-venda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculadoraIgpmRoute = CalculadoraIgpmRouteImport.update({
+  id: '/calculadora-igpm',
+  path: '/calculadora-igpm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalculadoraAluguelRoute = CalculadoraAluguelRouteImport.update({
@@ -206,25 +272,36 @@ export interface FileRoutesByFullPath {
   '/area-proprietario': typeof AreaProprietarioRoute
   '/cadastro': typeof CadastroRoute
   '/calculadora-aluguel': typeof CalculadoraAluguelRoute
+  '/calculadora-igpm': typeof CalculadoraIgpmRoute
   '/calculadora-venda': typeof CalculadoraVendaRoute
   '/central-de-ajuda': typeof CentralDeAjudaRoute
   '/condominios': typeof CondominiosRoute
+  '/contrato-de-aluguel': typeof ContratoDeAluguelRoute
   '/contratos': typeof ContratosRoute
   '/corretor-parceiro': typeof CorretorParceiroRoute
+  '/dados-e-indices': typeof DadosEIndicesRoute
   '/dashboard': typeof DashboardRoute
+  '/escritura-do-imovel': typeof EscrituraDoImovelRoute
   '/favoritos': typeof FavoritosRoute
+  '/guias': typeof GuiasRoute
   '/indicar-imoveis': typeof IndicarImoveisRoute
+  '/indices-reajuste': typeof IndicesReajusteRoute
   '/inteligencia': typeof InteligenciaRoute
   '/lancamentos': typeof LancamentosRoute
+  '/lei-do-inquilinato': typeof LeiDoInquilinatoRoute
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
   '/propostas': typeof PropostasRoute
   '/repasses': typeof RepassesRoute
   '/search': typeof SearchRoute
   '/seguranca': typeof SegurancaRoute
+  '/seja-corretor': typeof SejaCorretorRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
+  '/utilidades': typeof UtilidadesRoute
+  '/valor-metro-quadrado': typeof ValorMetroQuadradoRoute
+  '/valor-venal': typeof ValorVenalRoute
   '/vender-meu-imovel': typeof VenderMeuImovelRoute
   '/visitas': typeof VisitasRoute
   '/imovel/$slug': typeof ImovelSlugRoute
@@ -239,25 +316,36 @@ export interface FileRoutesByTo {
   '/area-proprietario': typeof AreaProprietarioRoute
   '/cadastro': typeof CadastroRoute
   '/calculadora-aluguel': typeof CalculadoraAluguelRoute
+  '/calculadora-igpm': typeof CalculadoraIgpmRoute
   '/calculadora-venda': typeof CalculadoraVendaRoute
   '/central-de-ajuda': typeof CentralDeAjudaRoute
   '/condominios': typeof CondominiosRoute
+  '/contrato-de-aluguel': typeof ContratoDeAluguelRoute
   '/contratos': typeof ContratosRoute
   '/corretor-parceiro': typeof CorretorParceiroRoute
+  '/dados-e-indices': typeof DadosEIndicesRoute
   '/dashboard': typeof DashboardRoute
+  '/escritura-do-imovel': typeof EscrituraDoImovelRoute
   '/favoritos': typeof FavoritosRoute
+  '/guias': typeof GuiasRoute
   '/indicar-imoveis': typeof IndicarImoveisRoute
+  '/indices-reajuste': typeof IndicesReajusteRoute
   '/inteligencia': typeof InteligenciaRoute
   '/lancamentos': typeof LancamentosRoute
+  '/lei-do-inquilinato': typeof LeiDoInquilinatoRoute
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
   '/propostas': typeof PropostasRoute
   '/repasses': typeof RepassesRoute
   '/search': typeof SearchRoute
   '/seguranca': typeof SegurancaRoute
+  '/seja-corretor': typeof SejaCorretorRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
+  '/utilidades': typeof UtilidadesRoute
+  '/valor-metro-quadrado': typeof ValorMetroQuadradoRoute
+  '/valor-venal': typeof ValorVenalRoute
   '/vender-meu-imovel': typeof VenderMeuImovelRoute
   '/visitas': typeof VisitasRoute
   '/imovel/$slug': typeof ImovelSlugRoute
@@ -273,25 +361,36 @@ export interface FileRoutesById {
   '/area-proprietario': typeof AreaProprietarioRoute
   '/cadastro': typeof CadastroRoute
   '/calculadora-aluguel': typeof CalculadoraAluguelRoute
+  '/calculadora-igpm': typeof CalculadoraIgpmRoute
   '/calculadora-venda': typeof CalculadoraVendaRoute
   '/central-de-ajuda': typeof CentralDeAjudaRoute
   '/condominios': typeof CondominiosRoute
+  '/contrato-de-aluguel': typeof ContratoDeAluguelRoute
   '/contratos': typeof ContratosRoute
   '/corretor-parceiro': typeof CorretorParceiroRoute
+  '/dados-e-indices': typeof DadosEIndicesRoute
   '/dashboard': typeof DashboardRoute
+  '/escritura-do-imovel': typeof EscrituraDoImovelRoute
   '/favoritos': typeof FavoritosRoute
+  '/guias': typeof GuiasRoute
   '/indicar-imoveis': typeof IndicarImoveisRoute
+  '/indices-reajuste': typeof IndicesReajusteRoute
   '/inteligencia': typeof InteligenciaRoute
   '/lancamentos': typeof LancamentosRoute
+  '/lei-do-inquilinato': typeof LeiDoInquilinatoRoute
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
   '/propostas': typeof PropostasRoute
   '/repasses': typeof RepassesRoute
   '/search': typeof SearchRoute
   '/seguranca': typeof SegurancaRoute
+  '/seja-corretor': typeof SejaCorretorRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
+  '/utilidades': typeof UtilidadesRoute
+  '/valor-metro-quadrado': typeof ValorMetroQuadradoRoute
+  '/valor-venal': typeof ValorVenalRoute
   '/vender-meu-imovel': typeof VenderMeuImovelRoute
   '/visitas': typeof VisitasRoute
   '/imovel/$slug': typeof ImovelSlugRoute
@@ -308,25 +407,36 @@ export interface FileRouteTypes {
     | '/area-proprietario'
     | '/cadastro'
     | '/calculadora-aluguel'
+    | '/calculadora-igpm'
     | '/calculadora-venda'
     | '/central-de-ajuda'
     | '/condominios'
+    | '/contrato-de-aluguel'
     | '/contratos'
     | '/corretor-parceiro'
+    | '/dados-e-indices'
     | '/dashboard'
+    | '/escritura-do-imovel'
     | '/favoritos'
+    | '/guias'
     | '/indicar-imoveis'
+    | '/indices-reajuste'
     | '/inteligencia'
     | '/lancamentos'
+    | '/lei-do-inquilinato'
     | '/login'
     | '/privacidade'
     | '/propostas'
     | '/repasses'
     | '/search'
     | '/seguranca'
+    | '/seja-corretor'
     | '/sobre'
     | '/termos'
     | '/tour-virtual'
+    | '/utilidades'
+    | '/valor-metro-quadrado'
+    | '/valor-venal'
     | '/vender-meu-imovel'
     | '/visitas'
     | '/imovel/$slug'
@@ -341,25 +451,36 @@ export interface FileRouteTypes {
     | '/area-proprietario'
     | '/cadastro'
     | '/calculadora-aluguel'
+    | '/calculadora-igpm'
     | '/calculadora-venda'
     | '/central-de-ajuda'
     | '/condominios'
+    | '/contrato-de-aluguel'
     | '/contratos'
     | '/corretor-parceiro'
+    | '/dados-e-indices'
     | '/dashboard'
+    | '/escritura-do-imovel'
     | '/favoritos'
+    | '/guias'
     | '/indicar-imoveis'
+    | '/indices-reajuste'
     | '/inteligencia'
     | '/lancamentos'
+    | '/lei-do-inquilinato'
     | '/login'
     | '/privacidade'
     | '/propostas'
     | '/repasses'
     | '/search'
     | '/seguranca'
+    | '/seja-corretor'
     | '/sobre'
     | '/termos'
     | '/tour-virtual'
+    | '/utilidades'
+    | '/valor-metro-quadrado'
+    | '/valor-venal'
     | '/vender-meu-imovel'
     | '/visitas'
     | '/imovel/$slug'
@@ -374,25 +495,36 @@ export interface FileRouteTypes {
     | '/area-proprietario'
     | '/cadastro'
     | '/calculadora-aluguel'
+    | '/calculadora-igpm'
     | '/calculadora-venda'
     | '/central-de-ajuda'
     | '/condominios'
+    | '/contrato-de-aluguel'
     | '/contratos'
     | '/corretor-parceiro'
+    | '/dados-e-indices'
     | '/dashboard'
+    | '/escritura-do-imovel'
     | '/favoritos'
+    | '/guias'
     | '/indicar-imoveis'
+    | '/indices-reajuste'
     | '/inteligencia'
     | '/lancamentos'
+    | '/lei-do-inquilinato'
     | '/login'
     | '/privacidade'
     | '/propostas'
     | '/repasses'
     | '/search'
     | '/seguranca'
+    | '/seja-corretor'
     | '/sobre'
     | '/termos'
     | '/tour-virtual'
+    | '/utilidades'
+    | '/valor-metro-quadrado'
+    | '/valor-venal'
     | '/vender-meu-imovel'
     | '/visitas'
     | '/imovel/$slug'
@@ -408,25 +540,36 @@ export interface RootRouteChildren {
   AreaProprietarioRoute: typeof AreaProprietarioRoute
   CadastroRoute: typeof CadastroRoute
   CalculadoraAluguelRoute: typeof CalculadoraAluguelRoute
+  CalculadoraIgpmRoute: typeof CalculadoraIgpmRoute
   CalculadoraVendaRoute: typeof CalculadoraVendaRoute
   CentralDeAjudaRoute: typeof CentralDeAjudaRoute
   CondominiosRoute: typeof CondominiosRoute
+  ContratoDeAluguelRoute: typeof ContratoDeAluguelRoute
   ContratosRoute: typeof ContratosRoute
   CorretorParceiroRoute: typeof CorretorParceiroRoute
+  DadosEIndicesRoute: typeof DadosEIndicesRoute
   DashboardRoute: typeof DashboardRoute
+  EscrituraDoImovelRoute: typeof EscrituraDoImovelRoute
   FavoritosRoute: typeof FavoritosRoute
+  GuiasRoute: typeof GuiasRoute
   IndicarImoveisRoute: typeof IndicarImoveisRoute
+  IndicesReajusteRoute: typeof IndicesReajusteRoute
   InteligenciaRoute: typeof InteligenciaRoute
   LancamentosRoute: typeof LancamentosRoute
+  LeiDoInquilinatoRoute: typeof LeiDoInquilinatoRoute
   LoginRoute: typeof LoginRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   PropostasRoute: typeof PropostasRoute
   RepassesRoute: typeof RepassesRoute
   SearchRoute: typeof SearchRoute
   SegurancaRoute: typeof SegurancaRoute
+  SejaCorretorRoute: typeof SejaCorretorRoute
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   TourVirtualRoute: typeof TourVirtualRoute
+  UtilidadesRoute: typeof UtilidadesRoute
+  ValorMetroQuadradoRoute: typeof ValorMetroQuadradoRoute
+  ValorVenalRoute: typeof ValorVenalRoute
   VenderMeuImovelRoute: typeof VenderMeuImovelRoute
   VisitasRoute: typeof VisitasRoute
   ImovelSlugRoute: typeof ImovelSlugRoute
@@ -449,6 +592,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VenderMeuImovelRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/valor-venal': {
+      id: '/valor-venal'
+      path: '/valor-venal'
+      fullPath: '/valor-venal'
+      preLoaderRoute: typeof ValorVenalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/valor-metro-quadrado': {
+      id: '/valor-metro-quadrado'
+      path: '/valor-metro-quadrado'
+      fullPath: '/valor-metro-quadrado'
+      preLoaderRoute: typeof ValorMetroQuadradoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/utilidades': {
+      id: '/utilidades'
+      path: '/utilidades'
+      fullPath: '/utilidades'
+      preLoaderRoute: typeof UtilidadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tour-virtual': {
       id: '/tour-virtual'
       path: '/tour-virtual'
@@ -468,6 +632,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre'
       fullPath: '/sobre'
       preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seja-corretor': {
+      id: '/seja-corretor'
+      path: '/seja-corretor'
+      fullPath: '/seja-corretor'
+      preLoaderRoute: typeof SejaCorretorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/seguranca': {
@@ -512,6 +683,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lei-do-inquilinato': {
+      id: '/lei-do-inquilinato'
+      path: '/lei-do-inquilinato'
+      fullPath: '/lei-do-inquilinato'
+      preLoaderRoute: typeof LeiDoInquilinatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lancamentos': {
       id: '/lancamentos'
       path: '/lancamentos'
@@ -526,11 +704,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InteligenciaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/indices-reajuste': {
+      id: '/indices-reajuste'
+      path: '/indices-reajuste'
+      fullPath: '/indices-reajuste'
+      preLoaderRoute: typeof IndicesReajusteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/indicar-imoveis': {
       id: '/indicar-imoveis'
       path: '/indicar-imoveis'
       fullPath: '/indicar-imoveis'
       preLoaderRoute: typeof IndicarImoveisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guias': {
+      id: '/guias'
+      path: '/guias'
+      fullPath: '/guias'
+      preLoaderRoute: typeof GuiasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/favoritos': {
@@ -540,11 +732,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FavoritosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/escritura-do-imovel': {
+      id: '/escritura-do-imovel'
+      path: '/escritura-do-imovel'
+      fullPath: '/escritura-do-imovel'
+      preLoaderRoute: typeof EscrituraDoImovelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dados-e-indices': {
+      id: '/dados-e-indices'
+      path: '/dados-e-indices'
+      fullPath: '/dados-e-indices'
+      preLoaderRoute: typeof DadosEIndicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/corretor-parceiro': {
@@ -559,6 +765,13 @@ declare module '@tanstack/react-router' {
       path: '/contratos'
       fullPath: '/contratos'
       preLoaderRoute: typeof ContratosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contrato-de-aluguel': {
+      id: '/contrato-de-aluguel'
+      path: '/contrato-de-aluguel'
+      fullPath: '/contrato-de-aluguel'
+      preLoaderRoute: typeof ContratoDeAluguelRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/condominios': {
@@ -580,6 +793,13 @@ declare module '@tanstack/react-router' {
       path: '/calculadora-venda'
       fullPath: '/calculadora-venda'
       preLoaderRoute: typeof CalculadoraVendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculadora-igpm': {
+      id: '/calculadora-igpm'
+      path: '/calculadora-igpm'
+      fullPath: '/calculadora-igpm'
+      preLoaderRoute: typeof CalculadoraIgpmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calculadora-aluguel': {
@@ -664,25 +884,36 @@ const rootRouteChildren: RootRouteChildren = {
   AreaProprietarioRoute: AreaProprietarioRoute,
   CadastroRoute: CadastroRoute,
   CalculadoraAluguelRoute: CalculadoraAluguelRoute,
+  CalculadoraIgpmRoute: CalculadoraIgpmRoute,
   CalculadoraVendaRoute: CalculadoraVendaRoute,
   CentralDeAjudaRoute: CentralDeAjudaRoute,
   CondominiosRoute: CondominiosRoute,
+  ContratoDeAluguelRoute: ContratoDeAluguelRoute,
   ContratosRoute: ContratosRoute,
   CorretorParceiroRoute: CorretorParceiroRoute,
+  DadosEIndicesRoute: DadosEIndicesRoute,
   DashboardRoute: DashboardRoute,
+  EscrituraDoImovelRoute: EscrituraDoImovelRoute,
   FavoritosRoute: FavoritosRoute,
+  GuiasRoute: GuiasRoute,
   IndicarImoveisRoute: IndicarImoveisRoute,
+  IndicesReajusteRoute: IndicesReajusteRoute,
   InteligenciaRoute: InteligenciaRoute,
   LancamentosRoute: LancamentosRoute,
+  LeiDoInquilinatoRoute: LeiDoInquilinatoRoute,
   LoginRoute: LoginRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   PropostasRoute: PropostasRoute,
   RepassesRoute: RepassesRoute,
   SearchRoute: SearchRoute,
   SegurancaRoute: SegurancaRoute,
+  SejaCorretorRoute: SejaCorretorRoute,
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   TourVirtualRoute: TourVirtualRoute,
+  UtilidadesRoute: UtilidadesRoute,
+  ValorMetroQuadradoRoute: ValorMetroQuadradoRoute,
+  ValorVenalRoute: ValorVenalRoute,
   VenderMeuImovelRoute: VenderMeuImovelRoute,
   VisitasRoute: VisitasRoute,
   ImovelSlugRoute: ImovelSlugRoute,
