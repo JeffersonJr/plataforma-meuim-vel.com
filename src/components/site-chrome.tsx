@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/logo.svg.asset.json";
+import logoUrl from "@/assets/logo.svg";
 import { Button } from "@/components/ui/button";
 import { Heart, LayoutDashboard, Menu, MessageCircle } from "lucide-react";
 import { useState } from "react";
@@ -10,7 +10,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-fog bg-white/85 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logoAsset.url} alt="meuimóvel.com" className="h-9 w-auto" />
+          <img src={logoUrl} alt="meuimóvel.com" className="h-9 w-auto" />
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           <Link
@@ -92,7 +92,7 @@ export function Footer() {
     <footer className="mt-24 border-t border-fog bg-cream">
       <div className="container-page grid gap-8 py-12 md:grid-cols-4">
         <div>
-          <img src={logoAsset.url} alt="meuimóvel.com" className="h-10 w-auto" />
+          <img src={logoUrl} alt="meuimóvel.com" className="h-10 w-auto" />
           <p className="mt-3 max-w-xs text-sm text-slate-token">
             A forma mais inteligente de encontrar seu próximo lar no Brasil.
           </p>
