@@ -152,7 +152,6 @@
 /* Leaflet override */
 .leaflet-container {
   font-family: var(--font-sans);
-  border-radius: 0;
 }
 .leaflet-popup-content-wrapper {
   border-radius: 12px;
@@ -167,20 +166,35 @@
 .leaflet-popup-tip-container {
   display: none;
 }
-.price-pin {
-  background: #0f2b46;
-  color: white;
-  font-weight: 700;
-  font-size: 12px;
-  padding: 5px 10px;
-  border-radius: 999px;
-  border: 2px solid white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-  white-space: nowrap;
+
+/* Quinto Andar-style cluster pins */
+.cluster-pin {
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18), 0 0 0 2px rgba(0,0,0,0.06);
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  border: 2px solid white;
 }
-.price-pin:hover, .price-pin.active {
-  background: #00c4a1;
-  transform: scale(1.1);
+.cluster-pin:hover {
+  transform: scale(1.12);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
 }
+.cluster-pin.selected {
+  background: #0f2b46;
+  box-shadow: 0 4px 16px rgba(15,43,70,0.35);
+}
+.cluster-pin.selected .cluster-count {
+  color: white;
+}
+.cluster-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1;
+  font-family: 'Inter', sans-serif;
+}
+

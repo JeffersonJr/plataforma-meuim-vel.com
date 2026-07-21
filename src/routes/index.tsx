@@ -24,48 +24,68 @@ function Home() {
     <div className="min-h-screen bg-white">
       <Header />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-brand text-white">
+      {/* Hero — full bleed with card on the right like Quinto Andar */}
+      <section className="relative overflow-hidden min-h-[88vh] flex items-center">
+        {/* Background photo */}
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0"
           style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 20%, rgba(0,180,150,0.35), transparent 40%), radial-gradient(circle at 80% 30%, rgba(245,158,11,0.25), transparent 45%)",
+            backgroundImage: "url('https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1800&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         />
-        <div className="container-page relative py-16 md:py-24">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5 text-amber" /> Novidade — Tour virtual em 3D em todos os anúncios verificados
+        {/* Gradient overlay — lighter on right so card pops */}
+        <div className="absolute inset-0 bg-gradient-to-r from-brand/80 via-brand/40 to-transparent" />
+
+        <div className="container-page relative z-10 flex flex-col items-start justify-between gap-12 py-20 lg:flex-row lg:items-center">
+          {/* Left — headline */}
+          <div className="max-w-xl text-white lg:flex-1">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs backdrop-blur mb-6">
+              <Sparkles className="h-3.5 w-3.5 text-amber" /> Novidade — Tour virtual em todos os anúncios verificados
             </div>
-            <h1 className="mt-5 text-4xl font-bold leading-tight md:text-6xl">
-              Seu próximo lar,<br />
-              <span className="text-mint">em segundos.</span>
+            <h1 className="text-5xl font-bold leading-tight md:text-6xl lg:text-7xl">
+              Alugue um lar<br />
+              <span className="text-mint">para chamar<br />de seu</span>
             </h1>
-            <p className="mt-4 max-w-xl text-base text-white/80 md:text-lg">
-              Milhares de imóveis verificados para alugar ou comprar. Filtre no mapa, faça o tour virtual e agende visitas sem burocracia.
+            <p className="mt-5 text-lg text-white/80 max-w-md">
+              Mais de 125 mil imóveis verificados em todo o Brasil. Busque no mapa, faça tour virtual e agende visitas em segundos.
             </p>
-          </div>
-          <div className="mt-8 max-w-5xl">
-            <SearchBar />
+
+            {/* Stats */}
+            <div className="mt-10 flex gap-8 border-t border-white/20 pt-6">
+              {[
+                { k: "125k+", l: "Imóveis" },
+                { k: "4.9★", l: "Avaliação" },
+                { k: "24h", l: "Resposta" },
+              ].map((s) => (
+                <div key={s.l}>
+                  <div className="text-2xl font-bold">{s.k}</div>
+                  <div className="text-xs text-white/70">{s.l}</div>
+                </div>
+              ))}
+            </div>
+
             <QuickBadges />
           </div>
 
-          {/* Stats */}
-          <div className="mt-12 grid max-w-3xl grid-cols-3 gap-6 border-t border-white/15 pt-6">
-            {[
-              { k: "125k+", l: "Imóveis ativos" },
-              { k: "4.9★", l: "Avaliação média" },
-              { k: "24h", l: "Resposta média" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="text-2xl font-bold md:text-3xl">{s.k}</div>
-                <div className="text-xs text-white/70 md:text-sm">{s.l}</div>
+          {/* Right — search card */}
+          <div className="w-full lg:w-[420px] lg:shrink-0">
+            {/* Card header like Quinto Andar */}
+            <div className="overflow-hidden rounded-3xl bg-white shadow-float">
+              <div className="px-6 pt-6 pb-2">
+                <h2 className="text-2xl font-bold text-ink leading-snug">
+                  Encontre seu<br />próximo lar
+                </h2>
               </div>
-            ))}
+              <div className="px-4 pb-4">
+                <SearchBar />
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* Value props */}
       <section className="border-b border-fog bg-cream">

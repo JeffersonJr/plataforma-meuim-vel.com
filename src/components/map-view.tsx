@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import type { Property } from "@/lib/mock-data";
-import { formatBRL } from "@/lib/mock-data";
 
 type Props = {
   properties: Property[];
@@ -8,10 +7,17 @@ type Props = {
   onSelect: (id: string | null) => void;
 };
 
-declare global {
-  // Leaflet types available via @types/leaflet
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  interface Window { L: any }
+// Group properties into neighborhood clusters for Quinto Andar-style display
+function buildClusters(properties: Property[]) {
+  const map = new Map<string, { lat: number; lng: number; ids: string[]; label: string }>();
+  properties.forEach((p) => {
+    const key = p.neighborhood;
+    if (!map.has(key)) {
+      map.set(key, { lat: p.lat, lng: p.lng, ids: [], label: p.neighborhood });
+    }
+    map.get(key)!.ids.push(p.id);
+  });
+  return [...map.values()];
 }
 
 export function MapView({ properties, selected, onSelect }: Props) {
@@ -23,9 +29,8 @@ export function MapView({ properties, selected, onSelect }: Props) {
 
   useEffect(() => {
     if (typeof window === "undefined" || !containerRef.current) return;
-    if (mapRef.current) return; // already initialized
+    if (mapRef.current) return;
 
-    // Dynamically import leaflet to avoid SSR issues
     import("leaflet").then((L) => {
       if (!containerRef.current || mapRef.current) return;
 
@@ -33,32 +38,75 @@ export function MapView({ properties, selected, onSelect }: Props) {
         center: [-23.55, -46.633],
         zoom: 11,
         zoomControl: false,
+        attributionControl: true,
       });
 
       L.control.zoom({ position: "bottomright" }).addTo(map);
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        maxZoom: 19,
-      }).addTo(map);
+      // Quinto Andar uses a light, clean map tile — CartoDB Positron is perfect
+      L.tileLayer(
+        "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+        {
+          attribution:
+            '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
+          subdomains: "abcd",
+          maxZoom: 19,
+        },
+      ).addTo(map);
 
       mapRef.current = map;
 
-      // Add markers
-      properties.forEach((p) => {
+      // Build clusters
+      const clusters = buildClusters(properties);
+
+      clusters.forEach((cluster) => {
+        const count = cluster.ids.length;
+        const isSelected = cluster.ids.some((id) => id === selected);
+
+        const size = count > 50 ? 56 : count > 20 ? 52 : count > 10 ? 48 : 44;
+
         const icon = L.divIcon({
-          html: `<div class="price-pin">${formatShort(p.price)}</div>`,
+          html: `
+            <div class="cluster-pin" data-ids="${cluster.ids.join(",")}" style="width:${size}px;height:${size}px">
+              <span class="cluster-count">${count}</span>
+            </div>
+          `,
           className: "",
-          iconAnchor: [30, 16],
+          iconAnchor: [size / 2, size / 2],
+          iconSize: [size, size],
         });
 
-        const marker = L.marker([p.lat, p.lng], { icon })
+        const marker = L.marker([cluster.lat, cluster.lng], { icon })
           .addTo(map)
-          .on("click", () => onSelect(p.id))
-          .on("mouseover", () => onSelect(p.id));
+          .on("click", () => {
+            // Select first property in cluster
+            const firstId = cluster.ids[0];
+            onSelect(firstId);
+          });
 
-        markersRef.current.set(p.id, marker);
+        cluster.ids.forEach((id) => {
+          markersRef.current.set(id, marker);
+        });
       });
+
+      // Add "Desenhar área de busca" button like Quinto Andar
+      const DrawControl = L.Control.extend({
+        options: { position: "bottomleft" },
+        onAdd() {
+          const btn = L.DomUtil.create("button", "");
+          btn.innerHTML = `
+            <div style="display:flex;align-items:center;gap:8px;background:white;border:none;border-radius:24px;padding:10px 20px;font-size:14px;font-weight:600;color:#111827;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,0.15);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12 Q6 3 12 3 Q18 3 21 12 Q18 21 12 21 Q6 21 3 12Z"/><circle cx="12" cy="12" r="2"/></svg>
+              Desenhar área de busca
+            </div>
+          `;
+          btn.style.background = "none";
+          btn.style.border = "none";
+          btn.style.cursor = "pointer";
+          return btn;
+        },
+      });
+      new DrawControl().addTo(map);
     });
 
     return () => {
@@ -71,25 +119,19 @@ export function MapView({ properties, selected, onSelect }: Props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Update marker active state
+  // Update selected state on cluster pins
   useEffect(() => {
     markersRef.current.forEach((marker, id) => {
-      const el = marker.getElement()?.querySelector(".price-pin");
+      const el = marker.getElement()?.querySelector(".cluster-pin");
       if (el) {
         if (id === selected) {
-          el.classList.add("active");
+          el.classList.add("selected");
         } else {
-          el.classList.remove("active");
+          el.classList.remove("selected");
         }
       }
     });
   }, [selected]);
 
   return <div ref={containerRef} className="h-full w-full" />;
-}
-
-function formatShort(n: number) {
-  if (n >= 1_000_000) return `R$ ${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 1000) return `R$ ${Math.round(n / 1000)}k`;
-  return `R$ ${n}`;
 }
