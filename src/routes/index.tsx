@@ -30,7 +30,7 @@ function Home() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1800&q=80')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

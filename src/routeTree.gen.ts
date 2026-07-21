@@ -10,13 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TourVirtualRouteImport } from './routes/tour-virtual'
+import { Route as TermosRouteImport } from './routes/termos'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as SegurancaRouteImport } from './routes/seguranca'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LancamentosRouteImport } from './routes/lancamentos'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CorretorParceiroRouteImport } from './routes/corretor-parceiro'
+import { Route as CentralDeAjudaRouteImport } from './routes/central-de-ajuda'
 import { Route as CadastroRouteImport } from './routes/cadastro'
+import { Route as AnunciarRouteImport } from './routes/anunciar'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PropertyIdRouteImport } from './routes/property.$id'
 
@@ -25,14 +31,29 @@ const TourVirtualRoute = TourVirtualRouteImport.update({
   path: '/tour-virtual',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermosRoute = TermosRouteImport.update({
+  id: '/termos',
+  path: '/termos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SobreRoute = SobreRouteImport.update({
   id: '/sobre',
   path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SegurancaRoute = SegurancaRouteImport.update({
+  id: '/seguranca',
+  path: '/seguranca',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -55,9 +76,24 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CorretorParceiroRoute = CorretorParceiroRouteImport.update({
+  id: '/corretor-parceiro',
+  path: '/corretor-parceiro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CentralDeAjudaRoute = CentralDeAjudaRouteImport.update({
+  id: '/central-de-ajuda',
+  path: '/central-de-ajuda',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CadastroRoute = CadastroRouteImport.update({
   id: '/cadastro',
   path: '/cadastro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnunciarRoute = AnunciarRouteImport.update({
+  id: '/anunciar',
+  path: '/anunciar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -73,38 +109,56 @@ const PropertyIdRoute = PropertyIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/anunciar': typeof AnunciarRoute
   '/cadastro': typeof CadastroRoute
+  '/central-de-ajuda': typeof CentralDeAjudaRoute
+  '/corretor-parceiro': typeof CorretorParceiroRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
   '/lancamentos': typeof LancamentosRoute
   '/login': typeof LoginRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/search': typeof SearchRoute
+  '/seguranca': typeof SegurancaRoute
   '/sobre': typeof SobreRoute
+  '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/anunciar': typeof AnunciarRoute
   '/cadastro': typeof CadastroRoute
+  '/central-de-ajuda': typeof CentralDeAjudaRoute
+  '/corretor-parceiro': typeof CorretorParceiroRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
   '/lancamentos': typeof LancamentosRoute
   '/login': typeof LoginRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/search': typeof SearchRoute
+  '/seguranca': typeof SegurancaRoute
   '/sobre': typeof SobreRoute
+  '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/anunciar': typeof AnunciarRoute
   '/cadastro': typeof CadastroRoute
+  '/central-de-ajuda': typeof CentralDeAjudaRoute
+  '/corretor-parceiro': typeof CorretorParceiroRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
   '/lancamentos': typeof LancamentosRoute
   '/login': typeof LoginRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/search': typeof SearchRoute
+  '/seguranca': typeof SegurancaRoute
   '/sobre': typeof SobreRoute
+  '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
   '/property/$id': typeof PropertyIdRoute
 }
@@ -112,50 +166,74 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/anunciar'
     | '/cadastro'
+    | '/central-de-ajuda'
+    | '/corretor-parceiro'
     | '/dashboard'
     | '/favoritos'
     | '/lancamentos'
     | '/login'
+    | '/privacidade'
     | '/search'
+    | '/seguranca'
     | '/sobre'
+    | '/termos'
     | '/tour-virtual'
     | '/property/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/anunciar'
     | '/cadastro'
+    | '/central-de-ajuda'
+    | '/corretor-parceiro'
     | '/dashboard'
     | '/favoritos'
     | '/lancamentos'
     | '/login'
+    | '/privacidade'
     | '/search'
+    | '/seguranca'
     | '/sobre'
+    | '/termos'
     | '/tour-virtual'
     | '/property/$id'
   id:
     | '__root__'
     | '/'
+    | '/anunciar'
     | '/cadastro'
+    | '/central-de-ajuda'
+    | '/corretor-parceiro'
     | '/dashboard'
     | '/favoritos'
     | '/lancamentos'
     | '/login'
+    | '/privacidade'
     | '/search'
+    | '/seguranca'
     | '/sobre'
+    | '/termos'
     | '/tour-virtual'
     | '/property/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnunciarRoute: typeof AnunciarRoute
   CadastroRoute: typeof CadastroRoute
+  CentralDeAjudaRoute: typeof CentralDeAjudaRoute
+  CorretorParceiroRoute: typeof CorretorParceiroRoute
   DashboardRoute: typeof DashboardRoute
   FavoritosRoute: typeof FavoritosRoute
   LancamentosRoute: typeof LancamentosRoute
   LoginRoute: typeof LoginRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
   SearchRoute: typeof SearchRoute
+  SegurancaRoute: typeof SegurancaRoute
   SobreRoute: typeof SobreRoute
+  TermosRoute: typeof TermosRoute
   TourVirtualRoute: typeof TourVirtualRoute
   PropertyIdRoute: typeof PropertyIdRoute
 }
@@ -169,6 +247,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TourVirtualRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/termos': {
+      id: '/termos'
+      path: '/termos'
+      fullPath: '/termos'
+      preLoaderRoute: typeof TermosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sobre': {
       id: '/sobre'
       path: '/sobre'
@@ -176,11 +261,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/seguranca': {
+      id: '/seguranca'
+      path: '/seguranca'
+      fullPath: '/seguranca'
+      preLoaderRoute: typeof SegurancaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -211,11 +310,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/corretor-parceiro': {
+      id: '/corretor-parceiro'
+      path: '/corretor-parceiro'
+      fullPath: '/corretor-parceiro'
+      preLoaderRoute: typeof CorretorParceiroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/central-de-ajuda': {
+      id: '/central-de-ajuda'
+      path: '/central-de-ajuda'
+      fullPath: '/central-de-ajuda'
+      preLoaderRoute: typeof CentralDeAjudaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cadastro': {
       id: '/cadastro'
       path: '/cadastro'
       fullPath: '/cadastro'
       preLoaderRoute: typeof CadastroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/anunciar': {
+      id: '/anunciar'
+      path: '/anunciar'
+      fullPath: '/anunciar'
+      preLoaderRoute: typeof AnunciarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -237,13 +357,19 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnunciarRoute: AnunciarRoute,
   CadastroRoute: CadastroRoute,
+  CentralDeAjudaRoute: CentralDeAjudaRoute,
+  CorretorParceiroRoute: CorretorParceiroRoute,
   DashboardRoute: DashboardRoute,
   FavoritosRoute: FavoritosRoute,
   LancamentosRoute: LancamentosRoute,
   LoginRoute: LoginRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
   SearchRoute: SearchRoute,
+  SegurancaRoute: SegurancaRoute,
   SobreRoute: SobreRoute,
+  TermosRoute: TermosRoute,
   TourVirtualRoute: TourVirtualRoute,
   PropertyIdRoute: PropertyIdRoute,
 }

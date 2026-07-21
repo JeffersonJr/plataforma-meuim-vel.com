@@ -229,17 +229,17 @@ const footerLinks = [
     title: "Empresa",
     links: [
       { label: "Sobre nós", to: "/sobre" },
-      { label: "Anunciar imóvel", to: "/dashboard" },
-      { label: "Corretor parceiro", to: "/dashboard" },
+      { label: "Anunciar imóvel", to: "/anunciar" },
+      { label: "Corretor parceiro", to: "/corretor-parceiro" },
     ],
   },
   {
     title: "Suporte",
     links: [
-      { label: "Central de ajuda", to: "/" },
-      { label: "Segurança", to: "/" },
-      { label: "Termos de uso", to: "/" },
-      { label: "Privacidade", to: "/" },
+      { label: "Central de ajuda", to: "/central-de-ajuda" },
+      { label: "Segurança", to: "/seguranca" },
+      { label: "Termos de uso", to: "/termos" },
+      { label: "Privacidade", to: "/privacidade" },
     ],
   },
 ];
@@ -256,13 +256,15 @@ export function Footer() {
           </p>
           <div className="mt-6 flex gap-4">
             {[
-              { Icon: Instagram, href: "#" },
-              { Icon: Twitter, href: "#" },
-              { Icon: Facebook, href: "#" },
+              { Icon: Instagram, href: "https://instagram.com" },
+              { Icon: Twitter, href: "https://twitter.com" },
+              { Icon: Facebook, href: "https://facebook.com" },
             ].map(({ Icon, href }) => (
               <a
                 key={href}
                 href={href}
+                target="_blank"
+                rel="noreferrer"
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white/60 transition hover:bg-mint hover:text-white"
               >
                 <Icon className="h-4 w-4" />
