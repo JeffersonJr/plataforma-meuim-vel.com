@@ -9,23 +9,33 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VisitasRouteImport } from './routes/visitas'
 import { Route as TourVirtualRouteImport } from './routes/tour-virtual'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SegurancaRouteImport } from './routes/seguranca'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as PropostasRouteImport } from './routes/propostas'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LancamentosRouteImport } from './routes/lancamentos'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CorretorParceiroRouteImport } from './routes/corretor-parceiro'
+import { Route as ContratosRouteImport } from './routes/contratos'
 import { Route as CentralDeAjudaRouteImport } from './routes/central-de-ajuda'
 import { Route as CadastroRouteImport } from './routes/cadastro'
+import { Route as AreaMeuimovelRouteImport } from './routes/area-meuimovel'
 import { Route as AnunciarRouteImport } from './routes/anunciar'
+import { Route as AlertasRouteImport } from './routes/alertas'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ImovelSlugRouteImport } from './routes/imovel.$slug'
 
+const VisitasRoute = VisitasRouteImport.update({
+  id: '/visitas',
+  path: '/visitas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TourVirtualRoute = TourVirtualRouteImport.update({
   id: '/tour-virtual',
   path: '/tour-virtual',
@@ -49,6 +59,11 @@ const SegurancaRoute = SegurancaRouteImport.update({
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PropostasRoute = PropostasRouteImport.update({
+  id: '/propostas',
+  path: '/propostas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
@@ -81,6 +96,11 @@ const CorretorParceiroRoute = CorretorParceiroRouteImport.update({
   path: '/corretor-parceiro',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContratosRoute = ContratosRouteImport.update({
+  id: '/contratos',
+  path: '/contratos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CentralDeAjudaRoute = CentralDeAjudaRouteImport.update({
   id: '/central-de-ajuda',
   path: '/central-de-ajuda',
@@ -91,9 +111,19 @@ const CadastroRoute = CadastroRouteImport.update({
   path: '/cadastro',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AreaMeuimovelRoute = AreaMeuimovelRouteImport.update({
+  id: '/area-meuimovel',
+  path: '/area-meuimovel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnunciarRoute = AnunciarRouteImport.update({
   id: '/anunciar',
   path: '/anunciar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertasRoute = AlertasRouteImport.update({
+  id: '/alertas',
+  path: '/alertas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -109,137 +139,179 @@ const ImovelSlugRoute = ImovelSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alertas': typeof AlertasRoute
   '/anunciar': typeof AnunciarRoute
+  '/area-meuimovel': typeof AreaMeuimovelRoute
   '/cadastro': typeof CadastroRoute
   '/central-de-ajuda': typeof CentralDeAjudaRoute
+  '/contratos': typeof ContratosRoute
   '/corretor-parceiro': typeof CorretorParceiroRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
   '/lancamentos': typeof LancamentosRoute
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/propostas': typeof PropostasRoute
   '/search': typeof SearchRoute
   '/seguranca': typeof SegurancaRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
+  '/visitas': typeof VisitasRoute
   '/imovel/$slug': typeof ImovelSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alertas': typeof AlertasRoute
   '/anunciar': typeof AnunciarRoute
+  '/area-meuimovel': typeof AreaMeuimovelRoute
   '/cadastro': typeof CadastroRoute
   '/central-de-ajuda': typeof CentralDeAjudaRoute
+  '/contratos': typeof ContratosRoute
   '/corretor-parceiro': typeof CorretorParceiroRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
   '/lancamentos': typeof LancamentosRoute
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/propostas': typeof PropostasRoute
   '/search': typeof SearchRoute
   '/seguranca': typeof SegurancaRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
+  '/visitas': typeof VisitasRoute
   '/imovel/$slug': typeof ImovelSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/alertas': typeof AlertasRoute
   '/anunciar': typeof AnunciarRoute
+  '/area-meuimovel': typeof AreaMeuimovelRoute
   '/cadastro': typeof CadastroRoute
   '/central-de-ajuda': typeof CentralDeAjudaRoute
+  '/contratos': typeof ContratosRoute
   '/corretor-parceiro': typeof CorretorParceiroRoute
   '/dashboard': typeof DashboardRoute
   '/favoritos': typeof FavoritosRoute
   '/lancamentos': typeof LancamentosRoute
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/propostas': typeof PropostasRoute
   '/search': typeof SearchRoute
   '/seguranca': typeof SegurancaRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
+  '/visitas': typeof VisitasRoute
   '/imovel/$slug': typeof ImovelSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/alertas'
     | '/anunciar'
+    | '/area-meuimovel'
     | '/cadastro'
     | '/central-de-ajuda'
+    | '/contratos'
     | '/corretor-parceiro'
     | '/dashboard'
     | '/favoritos'
     | '/lancamentos'
     | '/login'
     | '/privacidade'
+    | '/propostas'
     | '/search'
     | '/seguranca'
     | '/sobre'
     | '/termos'
     | '/tour-virtual'
+    | '/visitas'
     | '/imovel/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/alertas'
     | '/anunciar'
+    | '/area-meuimovel'
     | '/cadastro'
     | '/central-de-ajuda'
+    | '/contratos'
     | '/corretor-parceiro'
     | '/dashboard'
     | '/favoritos'
     | '/lancamentos'
     | '/login'
     | '/privacidade'
+    | '/propostas'
     | '/search'
     | '/seguranca'
     | '/sobre'
     | '/termos'
     | '/tour-virtual'
+    | '/visitas'
     | '/imovel/$slug'
   id:
     | '__root__'
     | '/'
+    | '/alertas'
     | '/anunciar'
+    | '/area-meuimovel'
     | '/cadastro'
     | '/central-de-ajuda'
+    | '/contratos'
     | '/corretor-parceiro'
     | '/dashboard'
     | '/favoritos'
     | '/lancamentos'
     | '/login'
     | '/privacidade'
+    | '/propostas'
     | '/search'
     | '/seguranca'
     | '/sobre'
     | '/termos'
     | '/tour-virtual'
+    | '/visitas'
     | '/imovel/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlertasRoute: typeof AlertasRoute
   AnunciarRoute: typeof AnunciarRoute
+  AreaMeuimovelRoute: typeof AreaMeuimovelRoute
   CadastroRoute: typeof CadastroRoute
   CentralDeAjudaRoute: typeof CentralDeAjudaRoute
+  ContratosRoute: typeof ContratosRoute
   CorretorParceiroRoute: typeof CorretorParceiroRoute
   DashboardRoute: typeof DashboardRoute
   FavoritosRoute: typeof FavoritosRoute
   LancamentosRoute: typeof LancamentosRoute
   LoginRoute: typeof LoginRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
+  PropostasRoute: typeof PropostasRoute
   SearchRoute: typeof SearchRoute
   SegurancaRoute: typeof SegurancaRoute
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   TourVirtualRoute: typeof TourVirtualRoute
+  VisitasRoute: typeof VisitasRoute
   ImovelSlugRoute: typeof ImovelSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/visitas': {
+      id: '/visitas'
+      path: '/visitas'
+      fullPath: '/visitas'
+      preLoaderRoute: typeof VisitasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tour-virtual': {
       id: '/tour-virtual'
       path: '/tour-virtual'
@@ -273,6 +345,13 @@ declare module '@tanstack/react-router' {
       path: '/search'
       fullPath: '/search'
       preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/propostas': {
+      id: '/propostas'
+      path: '/propostas'
+      fullPath: '/propostas'
+      preLoaderRoute: typeof PropostasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacidade': {
@@ -317,6 +396,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CorretorParceiroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contratos': {
+      id: '/contratos'
+      path: '/contratos'
+      fullPath: '/contratos'
+      preLoaderRoute: typeof ContratosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/central-de-ajuda': {
       id: '/central-de-ajuda'
       path: '/central-de-ajuda'
@@ -331,11 +417,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CadastroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/area-meuimovel': {
+      id: '/area-meuimovel'
+      path: '/area-meuimovel'
+      fullPath: '/area-meuimovel'
+      preLoaderRoute: typeof AreaMeuimovelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anunciar': {
       id: '/anunciar'
       path: '/anunciar'
       fullPath: '/anunciar'
       preLoaderRoute: typeof AnunciarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alertas': {
+      id: '/alertas'
+      path: '/alertas'
+      fullPath: '/alertas'
+      preLoaderRoute: typeof AlertasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -357,20 +457,25 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlertasRoute: AlertasRoute,
   AnunciarRoute: AnunciarRoute,
+  AreaMeuimovelRoute: AreaMeuimovelRoute,
   CadastroRoute: CadastroRoute,
   CentralDeAjudaRoute: CentralDeAjudaRoute,
+  ContratosRoute: ContratosRoute,
   CorretorParceiroRoute: CorretorParceiroRoute,
   DashboardRoute: DashboardRoute,
   FavoritosRoute: FavoritosRoute,
   LancamentosRoute: LancamentosRoute,
   LoginRoute: LoginRoute,
   PrivacidadeRoute: PrivacidadeRoute,
+  PropostasRoute: PropostasRoute,
   SearchRoute: SearchRoute,
   SegurancaRoute: SegurancaRoute,
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   TourVirtualRoute: TourVirtualRoute,
+  VisitasRoute: VisitasRoute,
   ImovelSlugRoute: ImovelSlugRoute,
 }
 export const routeTree = rootRouteImport

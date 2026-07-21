@@ -138,19 +138,19 @@ export function Header() {
                   <Link to="/favoritos" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
                     <Heart className="h-5 w-5 text-ink" /> Favoritos e listas
                   </Link>
-                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                  <Link to="/alertas" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
                     <Sparkles className="h-5 w-5 text-ink" /> Alertas criados
                   </Link>
-                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                  <Link to="/visitas" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
                     <MapPin className="h-5 w-5 text-ink" /> Visitas agendadas
                   </Link>
-                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                  <Link to="/propostas" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
                     <User className="h-5 w-5 text-ink" /> Propostas enviadas
                   </Link>
-                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                  <Link to="/contratos" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
                     <LogOut className="h-5 w-5 text-ink rotate-180" /> Contrato e boletos
                   </Link>
-                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                  <Link to="/area-meuimovel" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
                     <Building2 className="h-5 w-5 text-ink" /> Área MeuImóvel
                   </Link>
                   <div className="my-2 border-t border-fog" />
@@ -176,10 +176,10 @@ export function Header() {
                   <Link to="/login" className="flex justify-center rounded-xl bg-brand px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand/90 mb-4">
                     Entrar
                   </Link>
-                  <Link to="/" className="flex items-center gap-3 px-2 py-3 text-sm text-ink hover:bg-secondary rounded-lg">
+                  <Link to="/favoritos" className="flex items-center gap-3 px-2 py-3 text-sm text-ink hover:bg-secondary rounded-lg">
                     <Heart className="h-5 w-5 text-ink" /> Favoritos e listas
                   </Link>
-                  <Link to="/" className="flex items-center gap-3 px-2 py-3 text-sm text-ink hover:bg-secondary rounded-lg">
+                  <Link to="/alertas" className="flex items-center gap-3 px-2 py-3 text-sm text-ink hover:bg-secondary rounded-lg">
                     <Sparkles className="h-5 w-5 text-ink" /> Alertas criados
                   </Link>
                 </div>
