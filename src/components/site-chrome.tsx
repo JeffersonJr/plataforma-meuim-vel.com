@@ -80,24 +80,24 @@ export function Header() {
             title="Anunciar" 
             boldTitle="Anuncie no meuimóvel"
             items={[
-              { label: "Alugar meu imóvel", to: "/anunciar" },
-              { label: "Vender meu imóvel", to: "/anunciar" },
-              { label: "Calculadora de aluguel", to: "/" },
-              { label: "Calculadora de venda", to: "/" },
-              { label: "Área do proprietário", to: "/" },
-              { label: "Repasses", to: "/" },
+              { label: "Alugar meu imóvel", to: "/alugar-meu-imovel" },
+              { label: "Vender meu imóvel", to: "/vender-meu-imovel" },
+              { label: "Calculadora de aluguel", to: "/calculadora-aluguel" },
+              { label: "Calculadora de venda", to: "/calculadora-venda" },
+              { label: "Área do proprietário", to: "/area-proprietario" },
+              { label: "Repasses", to: "/repasses" },
               { label: "Para imobiliárias parceiras", to: "/corretor-parceiro" },
-              { label: "Indicar imóveis", to: "/" },
+              { label: "Indicar imóveis", to: "/indicar-imoveis" },
             ]} 
           />
           <MenuDropdown 
             title="Inteligência MeuImóvel" 
             boldTitle="Inteligência MeuImóvel"
             items={[
-              { label: "Calculadora de aluguel", to: "/" },
-              { label: "Calculadora de venda", to: "/" },
-              { label: "Área MeuImóvel", to: "/" },
-              { label: "Explorar condomínios", to: "/" },
+              { label: "Calculadora de aluguel", to: "/calculadora-aluguel" },
+              { label: "Calculadora de venda", to: "/calculadora-venda" },
+              { label: "Área MeuImóvel", to: "/area-meuimovel" },
+              { label: "Explorar condomínios", to: "/condominios" },
             ]} 
           />
           <MenuDropdown 
@@ -243,110 +243,111 @@ export function WhatsAppButton() {
 
 const footerLinks = [
   {
-    title: "Encontre seu imóvel",
+    title: "Sobre nós",
     links: [
-      { label: "Alugar", to: "/search", search: { mode: "rent" } },
-      { label: "Comprar", to: "/search", search: { mode: "buy" } },
-      { label: "Lançamentos", to: "/lancamentos" },
-      { label: "Tour Virtual", to: "/tour-virtual" },
-      { label: "Explorar condomínios", to: "/" },
-    ],
-  },
-  {
-    title: "Anunciar",
-    links: [
-      { label: "Alugar meu imóvel", to: "/anunciar" },
-      { label: "Vender meu imóvel", to: "/anunciar" },
-      { label: "Para imobiliárias parceiras", to: "/corretor-parceiro" },
-      { label: "Área do proprietário", to: "/" },
-      { label: "Indicar imóveis", to: "/" },
-    ],
-  },
-  {
-    title: "Inteligência & Utilidades",
-    links: [
-      { label: "Calculadora de aluguel", to: "/" },
-      { label: "Calculadora de venda", to: "/" },
-      { label: "Área MeuImóvel", to: "/" },
-      { label: "Índices de reajuste", to: "/" },
-      { label: "Valor do metro quadrado", to: "/" },
-      { label: "Lei do Inquilinato", to: "/" },
-    ],
-  },
-  {
-    title: "Suporte e Institucional",
-    links: [
-      { label: "Central de ajuda", to: "/central-de-ajuda" },
-      { label: "Sobre nós", to: "/sobre" },
+      { label: "Conheça o MeuImóvel", to: "/sobre" },
+      { label: "Regiões atendidas", to: "/search" },
+      { label: "Condomínios", to: "/condominios" },
+      { label: "Central de Ajuda", to: "/central-de-ajuda" },
       { label: "Segurança", to: "/seguranca" },
-      { label: "Termos de uso", to: "/termos" },
-      { label: "Privacidade", to: "/privacidade" },
+      { label: "Mapa do Site", to: "/search" },
+      { label: "Compliance", to: "/termos" },
+    ],
+  },
+  {
+    title: "Produtos",
+    links: [
+      { label: "Indique um imóvel", to: "/indicar-imoveis" },
+      { label: "Alugar meu imóvel", to: "/alugar-meu-imovel" },
+      { label: "Vender meu imóvel", to: "/vender-meu-imovel" },
+      { label: "Calculadora de aluguel", to: "/calculadora-aluguel" },
+      { label: "Calculadora de venda", to: "/calculadora-venda" },
+      { label: "Guias", to: "/central-de-ajuda" },
+    ],
+  },
+  {
+    title: "Trabalhe com a gente",
+    links: [
+      { label: "Para imobiliárias parceiras", to: "/corretor-parceiro" },
+      { label: "Corretagem", to: "/corretor-parceiro" },
+      { label: "Fotografia", to: "/corretor-parceiro" },
+      { label: "Parcerias de Reparos", to: "/corretor-parceiro" },
     ],
   },
 ];
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-fog bg-ink text-white">
-      <div className="container-page grid gap-12 py-16 md:grid-cols-[2fr_1fr_1fr_1fr]">
-        {/* Brand */}
-        <div>
-          <img src={logoUrl} alt="meuimóvel.com" className="h-10 w-auto brightness-0 invert" />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
-            A forma mais inteligente de encontrar seu próximo lar no Brasil.
-          </p>
-          <div className="mt-6 flex gap-4">
-            {[
-              { Icon: Instagram, href: "https://instagram.com" },
-              { Icon: Twitter, href: "https://twitter.com" },
-              { Icon: Facebook, href: "https://facebook.com" },
-            ].map(({ Icon, href }) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white/60 transition hover:bg-mint hover:text-white"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
+    <footer className="mt-24 border-t border-fog bg-background pt-16 pb-8">
+      <div className="container-page">
+        {/* Top section with columns and blue box */}
+        <div className="flex flex-col lg:flex-row justify-between gap-12 mb-16">
+          {/* Columns */}
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {footerLinks.map((col) => (
+              <div key={col.title}>
+                <h4 className="text-base font-bold text-ink mb-6">{col.title}</h4>
+                <ul className="space-y-4">
+                  {col.links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        to={link.to as never}
+                        className="text-sm text-slate-token hover:text-brand transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
-          <div className="mt-6 space-y-2 text-sm text-white/60">
-            <div className="flex items-center gap-2">
-              <Phone className="h-3.5 w-3.5 text-mint" />
-              <span>+55 11 99999-9999</span>
+
+          {/* Blue Box */}
+          <div className="bg-brand text-white p-8 rounded-2xl lg:w-80 flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-6">
+              <Building2 className="h-8 w-8" />
+              <span className="text-xl font-bold font-display tracking-tight">meuimóvel</span>
             </div>
-            <div className="flex items-center gap-2">
-              <Mail className="h-3.5 w-3.5 text-mint" />
-              <span>contato@meuimovel.com</span>
-            </div>
+            <p className="text-sm text-white/90 leading-relaxed mb-8">
+              Para proporcionar uma experiência inesquecível para quem precisa de um lar ou anuncia com a gente, o meuimóvel.com aposta em design, segurança e tecnologia de ponta.
+            </p>
+            <Link to="/sobre" className="inline-flex items-center text-sm font-medium hover:underline">
+              Mais informações &rarr;
+            </Link>
           </div>
         </div>
 
-        {footerLinks.map((col) => (
-          <div key={col.title}>
-            <h4 className="text-sm font-semibold text-white">{col.title}</h4>
-            <ul className="mt-4 space-y-2.5">
-              {col.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    to={link.to as never}
-                    className="text-sm text-white/60 transition hover:text-mint"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        {/* Bottom section with legal, social, badges */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-fog pt-8">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink">
+            <Link to="/privacidade" className="hover:underline">Aviso de privacidade &rarr;</Link>
+            <Link to="/termos" className="hover:underline">Termos e condições de uso &rarr;</Link>
+            <Link to="/privacidade" className="hover:underline">Política de Cookies &rarr;</Link>
+            <Link to="/central-de-ajuda" className="hover:underline">Manual do usuário &rarr;</Link>
           </div>
-        ))}
-      </div>
 
-      <div className="border-t border-white/10">
-        <div className="container-page flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/40 md:flex-row">
-          <p>© {new Date().getFullYear()} meuimóvel.com — Todos os direitos reservados.</p>
-          <p>CRECI-SP 12345-J · CNPJ 00.000.000/0001-00</p>
+          <div className="flex items-center gap-4">
+            <a href="#" className="text-ink hover:text-brand transition-colors"><Facebook className="h-5 w-5" /></a>
+            <a href="#" className="text-ink hover:text-brand transition-colors"><Instagram className="h-5 w-5" /></a>
+            <a href="#" className="text-ink hover:text-brand transition-colors"><Twitter className="h-5 w-5" /></a>
+          </div>
+        </div>
+
+        {/* Very bottom text and app badges */}
+        <div className="flex flex-col md:flex-row justify-between items-end gap-6 mt-8 text-xs text-slate-token">
+          <div>
+            <p className="font-bold text-ink mb-1">MeuImovel Ltda. CRECI-SP J12.345 | CRECI-RJ J1234</p>
+            <p>Versão: {new Date().toLocaleDateString('pt-BR')} {new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</p>
+          </div>
+          <div className="flex gap-3">
+            <a href="#" className="hover:opacity-80 transition-opacity">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" className="h-10" />
+            </a>
+            <a href="#" className="hover:opacity-80 transition-opacity">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" className="h-10" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

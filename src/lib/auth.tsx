@@ -22,14 +22,13 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 const STORAGE_KEY = "meuimovel_user";
 
-// Simulated users DB
 const DEMO_USERS: Record<string, { password: string; user: User }> = {
-  "joao@exemplo.com": {
+  "jefferson@exemplo.com": {
     password: "123456",
     user: {
       id: "u1",
-      name: "João Silva",
-      email: "joao@exemplo.com",
+      name: "Jefferson",
+      email: "jefferson@exemplo.com",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80",
       favorites: ["p1", "p3"],
     },

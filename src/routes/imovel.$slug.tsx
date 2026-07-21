@@ -290,12 +290,16 @@ function PropertyDetail() {
             </div>
 
             <div className="space-y-3">
-              <Button className="w-full rounded-full bg-brand py-6 font-bold text-white text-base hover:bg-brand/90">
-                Agendar visita
-              </Button>
-              <Button variant="outline" className="w-full rounded-full border-brand text-brand py-6 font-bold text-base hover:bg-brand/5">
-                Fazer proposta
-              </Button>
+              <Link to="/proposta/$slug" params={{ slug: p.slug }} className="block w-full">
+                <Button className="w-full rounded-full bg-brand py-6 font-bold text-white text-base hover:bg-brand/90">
+                  Agendar visita
+                </Button>
+              </Link>
+              <Link to="/proposta/$slug" params={{ slug: p.slug }} className="block w-full">
+                <Button variant="outline" className="w-full rounded-full border-brand text-brand py-6 font-bold text-base hover:bg-brand/5">
+                  Fazer proposta
+                </Button>
+              </Link>
             </div>
             
             <div className="mt-4 pt-4 border-t border-fog flex items-start gap-3 text-xs text-slate-token">
