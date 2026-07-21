@@ -1,5 +1,6 @@
 export type Property = {
   id: string;
+  slug: string;
   title: string;
   address: string;
   neighborhood: string;
@@ -30,9 +31,21 @@ export type Property = {
 const img = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1200&q=80`;
 
+const generateSlug = (type: string, bedrooms: number, neighborhood: string, city: string, id: string) => {
+  const typeStr = type === "apartment" ? "apartamento" : type === "house" ? "casa" : type === "studio" ? "studio" : "cobertura";
+  const str = `${typeStr}-${bedrooms}-quartos-${neighborhood}-${city}-${id}`;
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+};
+
 export const properties: Property[] = [
   {
     id: "p1",
+    slug: generateSlug("apartment", 2, "Jardins", "São Paulo", "p1"),
     title: "Apartamento moderno com vista para o parque",
     address: "Rua Oscar Freire, 1200",
     neighborhood: "Jardins",
@@ -70,6 +83,7 @@ export const properties: Property[] = [
   },
   {
     id: "p2",
+    slug: generateSlug("penthouse", 4, "Copacabana", "Rio de Janeiro", "p2"),
     title: "Cobertura duplex com terraço e piscina privativa",
     address: "Av. Atlântica, 2500",
     neighborhood: "Copacabana",
@@ -105,6 +119,7 @@ export const properties: Property[] = [
   },
   {
     id: "p3",
+    slug: generateSlug("studio", 1, "Consolação", "São Paulo", "p3"),
     title: "Studio compacto e bem iluminado no centro",
     address: "Rua da Consolação, 340",
     neighborhood: "Consolação",
@@ -138,6 +153,7 @@ export const properties: Property[] = [
   },
   {
     id: "p4",
+    slug: generateSlug("house", 4, "Alphaville", "Barueri", "p4"),
     title: "Casa de condomínio com jardim e churrasqueira",
     address: "Alameda das Palmeiras, 78",
     neighborhood: "Alphaville",
@@ -172,6 +188,7 @@ export const properties: Property[] = [
   },
   {
     id: "p5",
+    slug: generateSlug("apartment", 3, "Pinheiros", "São Paulo", "p5"),
     title: "Apartamento com varanda gourmet e 3 dormitórios",
     address: "Rua Fradique Coutinho, 900",
     neighborhood: "Pinheiros",
@@ -207,6 +224,7 @@ export const properties: Property[] = [
   },
   {
     id: "p6",
+    slug: generateSlug("studio", 1, "República", "São Paulo", "p6"),
     title: "Loft industrial em prédio histórico",
     address: "Rua Aurora, 155",
     neighborhood: "República",
@@ -239,6 +257,7 @@ export const properties: Property[] = [
   },
   {
     id: "p7",
+    slug: generateSlug("apartment", 3, "Ipanema", "Rio de Janeiro", "p7"),
     title: "Apartamento pé na areia em Ipanema",
     address: "Rua Vinícius de Moraes, 120",
     neighborhood: "Ipanema",
@@ -273,6 +292,7 @@ export const properties: Property[] = [
   },
   {
     id: "p8",
+    slug: "imovel-padrao-p8",
     title: "Apartamento familiar com 4 dormitórios",
     address: "Av. Paulista, 900",
     neighborhood: "Bela Vista",
@@ -308,6 +328,7 @@ export const properties: Property[] = [
 export const collections = [
   {
     id: "balcony",
+    slug: "imovel-padrao-balcony",
     title: "Apartamentos com varanda",
     subtitle: "Espaço extra para respirar",
     filter: (p: Property) => !!p.balcony,
@@ -315,6 +336,7 @@ export const collections = [
   },
   {
     id: "subway",
+    slug: "imovel-padrao-subway",
     title: "Perto do metrô",
     subtitle: "Mobilidade sem estresse",
     filter: (p: Property) => !!p.nearSubway,
@@ -322,6 +344,7 @@ export const collections = [
   },
   {
     id: "pet",
+    slug: "imovel-padrao-pet",
     title: "Pet friendly",
     subtitle: "Seu bichinho é bem-vindo",
     filter: (p: Property) => !!p.petFriendly,
@@ -329,6 +352,7 @@ export const collections = [
   },
   {
     id: "tour",
+    slug: "imovel-padrao-tour",
     title: "Com tour virtual",
     subtitle: "Visite de onde estiver",
     filter: (p: Property) => !!p.virtualTour,

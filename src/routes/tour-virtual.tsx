@@ -160,8 +160,8 @@ function TourVirtualPage() {
                   </div>
                 </div>
                 <Link
-                  to="/property/$id"
-                  params={{ id: selectedProp.id }}
+                  to="/imovel/$slug"
+                  params={{ slug: selectedProp.slug }}
                   className="mt-5 block w-full rounded-xl bg-brand px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-brand/90"
                 >
                   Ver imóvel completo

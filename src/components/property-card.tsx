@@ -25,8 +25,8 @@ export function PropertyCard({ property, className }: { property: Property; clas
 
   return (
     <Link
-      to="/property/$id"
-      params={{ id: property.id }}
+      to="/imovel/$slug"
+      params={{ slug: property.slug }}
       className={cn(
         "group card-hover flex flex-col overflow-hidden rounded-2xl border border-fog bg-white shadow-soft",
         className,

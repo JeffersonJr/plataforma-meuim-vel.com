@@ -1,6 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { properties, collections, formatBRL } from "@/lib/mock-data";
 import { Header, Footer, WhatsAppButton } from "@/components/site-chrome";
+import { SeoLinks } from "@/components/seo-links";
 import { SearchBar, QuickBadges } from "@/components/search-bar";
 import { PropertyCard } from "@/components/property-card";
 import { ArrowRight, ShieldCheck, Sparkles, Clock, MapPinned } from "lucide-react";
@@ -201,6 +203,7 @@ function Home() {
         </div>
       </section>
 
+      <SeoLinks />
       <Footer />
       <WhatsAppButton />
     </div>

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState, lazy, Suspense } from "react";
 import { Header, WhatsAppButton } from "@/components/site-chrome";
 import { PropertyCard } from "@/components/property-card";
+import { SeoLinks } from "@/components/seo-links";
 import { properties, formatBRL, type Property } from "@/lib/mock-data";
 import { Button } from "@/components/ui/button";
 import { SlidersHorizontal, X, MapPin, ChevronDown, Search } from "lucide-react";
@@ -870,8 +871,8 @@ function SearchPage() {
               if (!p) return null;
               return (
                 <Link
-                  to="/property/$id"
-                  params={{ id: p.id }}
+                  to="/imovel/$slug"
+                  params={{ slug: p.slug }}
                   className="absolute bottom-4 left-1/2 z-[500] w-72 -translate-x-1/2 block overflow-hidden rounded-2xl bg-white shadow-elevated"
                 >
                   <img src={p.images[0]} alt={p.title} className="h-28 w-full object-cover" />
@@ -943,6 +944,7 @@ function SearchPage() {
         />
       )}
 
+      <SeoLinks />
       <WhatsAppButton />
     </div>
   );

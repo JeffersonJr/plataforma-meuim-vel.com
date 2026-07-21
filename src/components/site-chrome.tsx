@@ -24,34 +24,37 @@ import { cn } from "@/lib/utils";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [discoverOpen, setDiscoverOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const discoverRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (discoverRef.current && !discoverRef.current.contains(e.target as Node)) {
-        setDiscoverOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+  const cities = ["São Paulo", "Rio de Janeiro", "Belo Horizonte", "Porto Alegre", "Campinas", "Curitiba", "Explorar outras cidades", "Condomínios"];
 
-  const navLinks = [
-    {
-      label: "Descobrir",
-      dropdown: [
-        { icon: Building2, label: "Alugar", to: "/search", search: { mode: "rent" } },
-        { icon: Building2, label: "Comprar", to: "/search", search: { mode: "buy" } },
-        { icon: Sparkles, label: "Lançamentos", to: "/lancamentos", search: {} },
-        { icon: MapPin, label: "Tour Virtual", to: "/tour-virtual", search: {} },
-      ],
-    },
-    { label: "Mapa", to: "/search" },
-    { label: "Sobre", to: "/sobre" },
-  ];
+  const MenuDropdown = ({ title, items, boldTitle = "Cidade" }: { title: string, items: {label: string, to: string, search?: any}[], boldTitle?: string }) => (
+    <div className="relative group">
+      <button className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-token transition hover:bg-secondary hover:text-ink">
+        {title} <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
+      </button>
+      <div className="absolute top-full left-0 mt-0 hidden pt-2 group-hover:block z-50">
+        <div className="w-56 rounded-2xl border border-fog bg-white py-2 shadow-elevated">
+          {boldTitle && (
+            <div className="px-4 py-2">
+              <div className="font-bold text-ink text-base border-b border-fog pb-2">{boldTitle}</div>
+            </div>
+          )}
+          {items.map((item, i) => (
+            <Link
+              key={i}
+              to={item.to as never}
+              search={item.search as never}
+              className="block px-4 py-2.5 text-sm text-ink transition hover:bg-secondary"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <header className="sticky top-0 z-40 border-b border-fog bg-white/95 backdrop-blur-md">
@@ -63,106 +66,129 @@ export function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-1 md:flex">
-          {/* Discover dropdown */}
-          <div ref={discoverRef} className="relative">
-            <button
-              onClick={() => setDiscoverOpen((v) => !v)}
-              className={cn(
-                "flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition",
-                discoverOpen ? "bg-secondary text-brand" : "text-slate-token hover:bg-secondary hover:text-ink",
-              )}
-            >
-              Descobrir <ChevronDown className={cn("h-4 w-4 transition-transform", discoverOpen && "rotate-180")} />
-            </button>
-            {discoverOpen && (
-              <div className="absolute top-full left-0 mt-2 w-56 rounded-2xl border border-fog bg-white p-2 shadow-elevated">
-                {navLinks[0].dropdown?.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.to as never}
-                    search={item.search as never}
-                    onClick={() => setDiscoverOpen(false)}
-                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-ink transition hover:bg-secondary"
-                  >
-                    <item.icon className="h-4 w-4 text-brand" />
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          <Link
-            to="/search"
-            className="rounded-lg px-3 py-2 text-sm font-medium text-slate-token transition hover:bg-secondary hover:text-ink"
-          >
-            Mapa
-          </Link>
-          <Link
-            to="/sobre"
-            className="rounded-lg px-3 py-2 text-sm font-medium text-slate-token transition hover:bg-secondary hover:text-ink"
-          >
-            Sobre
-          </Link>
+          <MenuDropdown 
+            title="Alugar" 
+            boldTitle="Cidade"
+            items={cities.map(c => ({ label: c, to: "/search", search: { mode: "rent" } }))} 
+          />
+          <MenuDropdown 
+            title="Comprar" 
+            boldTitle="Cidade"
+            items={cities.map(c => ({ label: c, to: "/search", search: { mode: "buy" } }))} 
+          />
+          <MenuDropdown 
+            title="Anunciar" 
+            boldTitle="Anuncie no meuimóvel"
+            items={[
+              { label: "Alugar meu imóvel", to: "/anunciar" },
+              { label: "Vender meu imóvel", to: "/anunciar" },
+              { label: "Calculadora de aluguel", to: "/" },
+              { label: "Calculadora de venda", to: "/" },
+              { label: "Área do proprietário", to: "/" },
+              { label: "Repasses", to: "/" },
+              { label: "Para imobiliárias parceiras", to: "/corretor-parceiro" },
+              { label: "Indicar imóveis", to: "/" },
+            ]} 
+          />
+          <MenuDropdown 
+            title="Inteligência MeuImóvel" 
+            boldTitle="Inteligência MeuImóvel"
+            items={[
+              { label: "Calculadora de aluguel", to: "/" },
+              { label: "Calculadora de venda", to: "/" },
+              { label: "Área MeuImóvel", to: "/" },
+              { label: "Explorar condomínios", to: "/" },
+            ]} 
+          />
+          <MenuDropdown 
+            title="Utilidades" 
+            boldTitle="Utilidades"
+            items={[
+              { label: "Guias", to: "/" },
+              { label: "Dados e índices", to: "/" },
+              { label: "Calculadora IGPM", to: "/" },
+              { label: "Contrato de aluguel", to: "/termos" },
+              { label: "Escritura do imóvel", to: "/" },
+              { label: "Índices de reajuste de aluguel", to: "/" },
+              { label: "Valor do metro quadrado", to: "/" },
+              { label: "Lei do Inquilinato", to: "/" },
+              { label: "Valor venal", to: "/" },
+              { label: "Seja corretor(a)", to: "/corretor-parceiro" },
+            ]} 
+          />
         </nav>
 
-        {/* Right side */}
+        {/* Right side Profile */}
         <div className="flex items-center gap-2">
           {user ? (
-            <>
-              <Link to="/favoritos" className="hidden md:flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-slate-token transition hover:bg-secondary hover:text-ink">
-                <Heart className="h-4 w-4" /> Favoritos
-              </Link>
-              <div className="relative group">
-                <button className="flex items-center gap-2 rounded-xl border border-fog bg-secondary px-3 py-2 text-sm font-medium text-ink transition hover:border-brand">
-                  {user.avatar ? (
-                    <img src={user.avatar} alt={user.name} className="h-6 w-6 rounded-full object-cover" />
-                  ) : (
-                    <User className="h-4 w-4 text-brand" />
-                  )}
-                  <span className="hidden md:inline max-w-24 truncate">{user.name.split(" ")[0]}</span>
-                </button>
-                <div className="absolute right-0 top-full mt-2 hidden w-48 rounded-2xl border border-fog bg-white p-2 shadow-elevated group-hover:block">
-                  <Link
-                    to="/dashboard"
-                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-ink hover:bg-secondary"
-                  >
-                    <LayoutDashboard className="h-4 w-4 text-brand" /> Meu painel
+            <div className="relative group">
+              <button className="flex items-center gap-2 rounded-xl border border-fog bg-secondary px-3 py-2 text-sm font-medium text-ink transition hover:border-brand">
+                {user.avatar ? (
+                  <img src={user.avatar} alt={user.name} className="h-6 w-6 rounded-full object-cover" />
+                ) : (
+                  <User className="h-4 w-4 text-brand" />
+                )}
+                <span className="hidden md:inline max-w-24 truncate">{user.name.split(" ")[0]}</span>
+              </button>
+              <div className="absolute right-0 top-full mt-0 hidden pt-2 w-64 group-hover:block z-50">
+                <div className="rounded-2xl border border-fog bg-white py-2 shadow-elevated">
+                  <div className="px-4 py-3 text-sm text-slate-token border-b border-fog mb-2">
+                    Entre para ver seus favoritos, visitas, propostas e aluguéis
+                  </div>
+                  <Link to="/favoritos" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                    <Heart className="h-5 w-5 text-ink" /> Favoritos e listas
                   </Link>
-                  <Link
-                    to="/favoritos"
-                    className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-ink hover:bg-secondary"
-                  >
-                    <Heart className="h-4 w-4 text-brand" /> Favoritos
+                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                    <Sparkles className="h-5 w-5 text-ink" /> Alertas criados
                   </Link>
-                  <div className="my-1 border-t border-fog" />
-                  <button
-                    onClick={() => { logout(); navigate({ to: "/" }); }}
-                    className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-red-600 hover:bg-red-50"
-                  >
-                    <LogOut className="h-4 w-4" /> Sair
+                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                    <MapPin className="h-5 w-5 text-ink" /> Visitas agendadas
+                  </Link>
+                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                    <User className="h-5 w-5 text-ink" /> Propostas enviadas
+                  </Link>
+                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                    <LogOut className="h-5 w-5 text-ink rotate-180" /> Contrato e boletos
+                  </Link>
+                  <Link to="/" className="flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-secondary">
+                    <Building2 className="h-5 w-5 text-ink" /> Área MeuImóvel
+                  </Link>
+                  <div className="my-2 border-t border-fog" />
+                  <Link to="/dashboard" className="block px-4 py-3 text-sm text-ink hover:bg-secondary">
+                    Minha conta
+                  </Link>
+                  <button onClick={() => { logout(); navigate({ to: "/" }); }} className="block w-full text-left px-4 py-3 text-sm text-ink hover:bg-secondary">
+                    Sair da conta
                   </button>
                 </div>
               </div>
-            </>
+            </div>
           ) : (
-            <>
-              <Link
-                to="/login"
-                className="hidden md:inline-flex items-center rounded-xl px-4 py-2 text-sm font-medium text-ink transition hover:bg-secondary"
-              >
+            <div className="relative group">
+              <button className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-ink transition hover:bg-secondary">
                 Entrar
-              </Link>
-              <Link
-                to="/cadastro"
-                className="hidden md:inline-flex items-center gap-2 rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand/90"
-              >
-                <LayoutDashboard className="h-4 w-4" /> Anunciar
-              </Link>
-            </>
+              </button>
+              <div className="absolute right-0 top-full mt-0 hidden pt-2 w-72 group-hover:block z-50">
+                <div className="rounded-2xl border border-fog bg-white py-4 px-4 shadow-elevated">
+                  <div className="text-sm text-slate-token mb-4">
+                    Entre para ver seus favoritos, visitas, propostas e aluguéis
+                  </div>
+                  <Link to="/login" className="flex justify-center rounded-xl bg-brand px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand/90 mb-4">
+                    Entrar
+                  </Link>
+                  <Link to="/" className="flex items-center gap-3 px-2 py-3 text-sm text-ink hover:bg-secondary rounded-lg">
+                    <Heart className="h-5 w-5 text-ink" /> Favoritos e listas
+                  </Link>
+                  <Link to="/" className="flex items-center gap-3 px-2 py-3 text-sm text-ink hover:bg-secondary rounded-lg">
+                    <Sparkles className="h-5 w-5 text-ink" /> Alertas criados
+                  </Link>
+                </div>
+              </div>
+            </div>
           )}
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            className="rounded-lg p-2 text-ink md:hidden"
+            className="rounded-lg p-2 text-ink lg:hidden"
             aria-label="Menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

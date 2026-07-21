@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useFavorites } from "@/lib/favorites";
 import { cn } from "@/lib/utils";
+import { SeoLinks } from "@/components/seo-links";
 import {
   Bath,
   BedDouble,
@@ -28,9 +29,16 @@ import {
   PlayCircle
 } from "lucide-react";
 
-export const Route = createFileRoute("/property/$id")({
+export const Route = createFileRoute("/imovel/$slug")({
   loader: ({ params }) => {
-    const property = properties.find((p) => p.id === params.id);
+    // Find property where slug matches, or fallback to parsing the id from the end of the slug
+    let property = properties.find((p) => p.slug === params.slug);
+    if (!property) {
+       const idMatch = params.slug.match(/-p(\d+)$/);
+       if (idMatch) {
+         property = properties.find((p) => p.id === `p${idMatch[1]}`);
+       }
+    }
     if (!property) throw notFound();
     return { property };
   },
@@ -304,7 +312,7 @@ function PropertyDetail() {
           <h2 className="text-2xl font-bold text-ink mb-8">Outros imóveis recomendados para você</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {similar.map(sim => (
-              <Link key={sim.id} to="/property/$id" params={{ id: sim.id }} className="group bg-white rounded-2xl border border-fog overflow-hidden hover:shadow-soft transition">
+              <Link key={sim.id} to="/imovel/$slug" params={{ slug: sim.slug }} className="group bg-white rounded-2xl border border-fog overflow-hidden hover:shadow-soft transition">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img src={sim.images[0]} alt="" className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
                   <div className="absolute bottom-2 right-2 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-xs font-bold text-ink">
@@ -331,6 +339,7 @@ function PropertyDetail() {
         </div>
       </section>
 
+      <SeoLinks />
       <WhatsAppButton />
       <Footer />
     </div>

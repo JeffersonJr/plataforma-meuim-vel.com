@@ -24,7 +24,7 @@ import { Route as CentralDeAjudaRouteImport } from './routes/central-de-ajuda'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as AnunciarRouteImport } from './routes/anunciar'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PropertyIdRouteImport } from './routes/property.$id'
+import { Route as ImovelSlugRouteImport } from './routes/imovel.$slug'
 
 const TourVirtualRoute = TourVirtualRouteImport.update({
   id: '/tour-virtual',
@@ -101,9 +101,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PropertyIdRoute = PropertyIdRouteImport.update({
-  id: '/property/$id',
-  path: '/property/$id',
+const ImovelSlugRoute = ImovelSlugRouteImport.update({
+  id: '/imovel/$slug',
+  path: '/imovel/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -123,7 +123,7 @@ export interface FileRoutesByFullPath {
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
-  '/property/$id': typeof PropertyIdRoute
+  '/imovel/$slug': typeof ImovelSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -141,7 +141,7 @@ export interface FileRoutesByTo {
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
-  '/property/$id': typeof PropertyIdRoute
+  '/imovel/$slug': typeof ImovelSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -160,7 +160,7 @@ export interface FileRoutesById {
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/tour-virtual': typeof TourVirtualRoute
-  '/property/$id': typeof PropertyIdRoute
+  '/imovel/$slug': typeof ImovelSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -180,7 +180,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/termos'
     | '/tour-virtual'
-    | '/property/$id'
+    | '/imovel/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -198,7 +198,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/termos'
     | '/tour-virtual'
-    | '/property/$id'
+    | '/imovel/$slug'
   id:
     | '__root__'
     | '/'
@@ -216,7 +216,7 @@ export interface FileRouteTypes {
     | '/sobre'
     | '/termos'
     | '/tour-virtual'
-    | '/property/$id'
+    | '/imovel/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -235,7 +235,7 @@ export interface RootRouteChildren {
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   TourVirtualRoute: typeof TourVirtualRoute
-  PropertyIdRoute: typeof PropertyIdRoute
+  ImovelSlugRoute: typeof ImovelSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -345,11 +345,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/property/$id': {
-      id: '/property/$id'
-      path: '/property/$id'
-      fullPath: '/property/$id'
-      preLoaderRoute: typeof PropertyIdRouteImport
+    '/imovel/$slug': {
+      id: '/imovel/$slug'
+      path: '/imovel/$slug'
+      fullPath: '/imovel/$slug'
+      preLoaderRoute: typeof ImovelSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -371,7 +371,7 @@ const rootRouteChildren: RootRouteChildren = {
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   TourVirtualRoute: TourVirtualRoute,
-  PropertyIdRoute: PropertyIdRoute,
+  ImovelSlugRoute: ImovelSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
