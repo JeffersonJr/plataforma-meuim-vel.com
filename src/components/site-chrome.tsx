@@ -225,20 +225,7 @@ export function Header() {
 }
 
 export function WhatsAppButton() {
-  return (
-    <a
-      href="https://wa.me/5511999999999"
-      target="_blank"
-      rel="noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-float transition-transform hover:scale-105"
-      aria-label="Fale conosco no WhatsApp"
-    >
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.16 21.17a.5.5 0 0 0 .622.622l3.99-1.274A10 10 0 1 0 12 2zm0 18.182a8.182 8.182 0 1 1 0-16.364 8.182 8.182 0 0 1 0 16.364z" />
-      </svg>
-    </a>
-  );
+  return null;
 }
 
 const footerLinks = [
@@ -306,8 +293,7 @@ export function Footer() {
           {/* Blue Box */}
           <div className="bg-brand text-white p-8 rounded-2xl lg:w-80 flex flex-col justify-center">
             <div className="flex items-center gap-2 mb-6">
-              <Building2 className="h-8 w-8" />
-              <span className="text-xl font-bold font-display tracking-tight">meuimóvel</span>
+              <img src={logoUrl} alt="meuimóvel.com" className="h-8 w-auto brightness-0 invert" />
             </div>
             <p className="text-sm text-white/90 leading-relaxed mb-8">
               Para proporcionar uma experiência inesquecível para quem precisa de um lar ou anuncia com a gente, o meuimóvel.com aposta em design, segurança e tecnologia de ponta.

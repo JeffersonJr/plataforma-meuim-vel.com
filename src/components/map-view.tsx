@@ -32,8 +32,10 @@ export function MapView({ properties, selected, onSelect }: Props) {
     if (typeof window === "undefined" || !containerRef.current) return;
     if (mapRef.current) return;
 
+    let isMounted = true;
+
     import("leaflet").then((L) => {
-      if (!containerRef.current || mapRef.current) return;
+      if (!isMounted || !containerRef.current || mapRef.current) return;
 
       const map = L.map(containerRef.current, {
         center: [-23.55, -46.633],
@@ -44,7 +46,6 @@ export function MapView({ properties, selected, onSelect }: Props) {
 
       L.control.zoom({ position: "bottomright" }).addTo(map);
 
-      // Quinto Andar uses a light, clean map tile — CartoDB Positron is perfect
       L.tileLayer(
         "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
         {
@@ -57,13 +58,10 @@ export function MapView({ properties, selected, onSelect }: Props) {
 
       mapRef.current = map;
 
-      // Build clusters
       const clusters = buildClusters(properties);
 
       clusters.forEach((cluster) => {
         const count = cluster.ids.length;
-        const isSelected = cluster.ids.some((id) => id === selected);
-
         const size = count > 50 ? 56 : count > 20 ? 52 : count > 10 ? 48 : 44;
 
         const icon = L.divIcon({
@@ -80,7 +78,6 @@ export function MapView({ properties, selected, onSelect }: Props) {
         const marker = L.marker([cluster.lat, cluster.lng], { icon })
           .addTo(map)
           .on("click", () => {
-            // Select first property in cluster
             const firstId = cluster.ids[0];
             onSelect(firstId);
           });
@@ -90,7 +87,6 @@ export function MapView({ properties, selected, onSelect }: Props) {
         });
       });
 
-      // Add "Desenhar área de busca" button like Quinto Andar
       const DrawControl = L.Control.extend({
         options: { position: "bottomleft" },
         onAdd() {
@@ -109,13 +105,13 @@ export function MapView({ properties, selected, onSelect }: Props) {
       });
       new DrawControl().addTo(map);
 
-      // Force recalculation to fix grey empty map bug in flex layouts
       setTimeout(() => {
         map.invalidateSize();
       }, 250);
     });
 
     return () => {
+      isMounted = false;
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
@@ -139,5 +135,5 @@ export function MapView({ properties, selected, onSelect }: Props) {
     });
   }, [selected]);
 
-  return <div ref={containerRef} className="absolute inset-0 z-0" />;
+  return <div ref={containerRef} className="absolute inset-0 z-0" style={{ height: "100%", width: "100%" }} />;
 }
