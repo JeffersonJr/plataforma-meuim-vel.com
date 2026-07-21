@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -48,66 +49,67 @@
   --color-slate-token: var(--slate-token);
   --color-ink: var(--ink);
 
-  --shadow-soft: 0 1px 2px rgb(2 39 75 / 0.04), 0 8px 24px -8px rgb(2 39 75 / 0.08);
-  --shadow-elevated: 0 4px 12px rgb(2 39 75 / 0.06), 0 24px 48px -16px rgb(2 39 75 / 0.14);
+  --shadow-soft: 0 1px 3px rgb(0 0 0 / 0.05), 0 8px 24px -8px rgb(0 0 0 / 0.08);
+  --shadow-elevated: 0 4px 16px rgb(0 0 0 / 0.08), 0 24px 48px -16px rgb(0 0 0 / 0.16);
+  --shadow-float: 0 8px 32px rgb(0 0 0 / 0.12), 0 2px 8px rgb(0 0 0 / 0.08);
 }
 
 :root {
   --radius: 0.75rem;
 
-  /* Brand palette */
-  --brand: #002d4b;
+  /* Brand palette — premium feel */
+  --brand: #0f2b46;
   --brand-foreground: #ffffff;
-  --mint: #00b496;
+  --mint: #00c4a1;
   --mint-foreground: #ffffff;
   --amber: #f59e0b;
   --amber-foreground: #171717;
-  --cream: #fdfbf7;
-  --snow: #fafafa;
-  --fog: #e5e5e5;
-  --slate-token: #737373;
-  --ink: #171717;
+  --cream: #fdfcf9;
+  --snow: #f8f9fa;
+  --fog: #e8eaed;
+  --slate-token: #6b7280;
+  --ink: #111827;
 
-  /* Shadcn semantic mapped to brand */
+  /* Shadcn semantic */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
   --card: #ffffff;
-  --card-foreground: #171717;
+  --card-foreground: #111827;
   --popover: #ffffff;
-  --popover-foreground: #171717;
-  --primary: #002d4b;
+  --popover-foreground: #111827;
+  --primary: #0f2b46;
   --primary-foreground: #ffffff;
-  --secondary: #f4f6f9;
-  --secondary-foreground: #002d4b;
-  --muted: #f4f6f9;
-  --muted-foreground: #737373;
-  --accent: #00b496;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #0f2b46;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #00c4a1;
   --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: #ffffff;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #002d4b;
+  --border: #e8eaed;
+  --input: #e8eaed;
+  --ring: #0f2b46;
 }
 
 .dark {
-  --background: #0b1622;
-  --foreground: #fafafa;
-  --card: #10202f;
-  --card-foreground: #fafafa;
-  --popover: #10202f;
-  --popover-foreground: #fafafa;
-  --primary: #00b496;
-  --primary-foreground: #002d4b;
-  --secondary: #16283a;
-  --secondary-foreground: #fafafa;
-  --muted: #16283a;
-  --muted-foreground: #a3a3a3;
-  --accent: #00b496;
-  --accent-foreground: #002d4b;
-  --border: rgb(255 255 255 / 0.1);
-  --input: rgb(255 255 255 / 0.15);
-  --ring: #00b496;
+  --background: #08111c;
+  --foreground: #f9fafb;
+  --card: #0f1f30;
+  --card-foreground: #f9fafb;
+  --popover: #0f1f30;
+  --popover-foreground: #f9fafb;
+  --primary: #00c4a1;
+  --primary-foreground: #08111c;
+  --secondary: #162436;
+  --secondary-foreground: #f9fafb;
+  --muted: #162436;
+  --muted-foreground: #9ca3af;
+  --accent: #00c4a1;
+  --accent-foreground: #08111c;
+  --border: rgb(255 255 255 / 0.08);
+  --input: rgb(255 255 255 / 0.12);
+  --ring: #00c4a1;
 }
 
 @layer base {
@@ -119,30 +121,66 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
 }
 
 @utility container-page {
   width: 100%;
   margin-inline: auto;
-  padding-inline: 1rem;
+  padding-inline: 1.25rem;
   max-width: 80rem;
 }
 
 @utility card-hover {
   transition: transform 200ms ease, box-shadow 200ms ease;
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-elevated);
   }
 }
 
-/* Hide scrollbar for horizontal carousels */
 @utility no-scrollbar {
   scrollbar-width: none;
   &::-webkit-scrollbar { display: none; }
+}
+
+/* Leaflet override */
+.leaflet-container {
+  font-family: var(--font-sans);
+  border-radius: 0;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: var(--shadow-elevated);
+  border: none;
+  padding: 0;
+  overflow: hidden;
+}
+.leaflet-popup-content {
+  margin: 0;
+}
+.leaflet-popup-tip-container {
+  display: none;
+}
+.price-pin {
+  background: #0f2b46;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.price-pin:hover, .price-pin.active {
+  background: #00c4a1;
+  transform: scale(1.1);
 }

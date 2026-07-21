@@ -1,16 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Bath, BedDouble, Car, Heart, MapPin, Ruler, Play, ChevronLeft, ChevronRight } from "lucide-react";
+import { Bath, BedDouble, Car, Heart, MapPin, Ruler, Play, ChevronLeft, ChevronRight, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Property } from "@/lib/mock-data";
 import { formatBRL } from "@/lib/mock-data";
-import { useFavorites } from "@/lib/favorites";
+import { useAuth } from "@/lib/auth";
 import { Badge } from "@/components/ui/badge";
 
 export function PropertyCard({ property, className }: { property: Property; className?: string }) {
   const [idx, setIdx] = useState(0);
-  const { isFav, toggle } = useFavorites();
-  const fav = isFav(property.id);
+  const { isFavorite, toggleFavorite } = useAuth();
+  const fav = isFavorite(property.id);
 
   const next = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -32,6 +32,7 @@ export function PropertyCard({ property, className }: { property: Property; clas
         className,
       )}
     >
+      {/* Image */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-secondary">
         <img
           src={property.images[idx]}
@@ -39,32 +40,40 @@ export function PropertyCard({ property, className }: { property: Property; clas
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
+
+        {/* Top row */}
         <div className="absolute inset-x-0 top-0 flex items-start justify-between p-3">
           <div className="flex flex-wrap gap-1.5">
-            {property.tags.slice(0, 2).map((t) => (
-              <Badge
-                key={t}
-                className="border-0 bg-white/95 text-[11px] font-medium text-ink shadow-soft"
-              >
-                {t === "Tour Virtual" && <Play className="mr-1 h-3 w-3 text-mint" />}
-                {t}
+            {property.virtualTour && (
+              <Badge className="border-0 bg-mint/90 text-[10px] font-bold text-white backdrop-blur">
+                <Play className="mr-1 h-2.5 w-2.5" /> Tour Virtual
               </Badge>
-            ))}
+            )}
+            {property.petFriendly && (
+              <Badge className="border-0 bg-white/90 text-[10px] font-medium text-ink shadow-soft backdrop-blur">
+                🐾 Pet Friendly
+              </Badge>
+            )}
           </div>
           <button
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              toggle(property.id);
+              toggleFavorite(property.id);
             }}
-            className="grid h-9 w-9 place-items-center rounded-full bg-white/95 shadow-soft transition hover:scale-110"
+            className={cn(
+              "grid h-9 w-9 place-items-center rounded-full shadow-soft transition hover:scale-110",
+              fav ? "bg-brand" : "bg-white/95",
+            )}
             aria-label="Favoritar"
           >
             <Heart
-              className={cn("h-4 w-4 transition", fav ? "fill-amber text-amber" : "text-ink")}
+              className={cn("h-4 w-4 transition", fav ? "fill-white text-white" : "text-ink")}
             />
           </button>
         </div>
+
+        {/* Image carousel controls */}
         {property.images.length > 1 && (
           <>
             <button
@@ -95,29 +104,42 @@ export function PropertyCard({ property, className }: { property: Property; clas
           </>
         )}
       </div>
-      <div className="flex flex-1 flex-col gap-3 p-4">
+
+      {/* Content */}
+      <div className="flex flex-1 flex-col gap-2.5 p-4">
+        {/* Price */}
         <div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-lg font-bold text-brand">{formatBRL(property.price)}</span>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-xl font-bold text-brand">{formatBRL(property.price)}</span>
             {property.mode === "rent" && (
               <span className="text-xs text-slate-token">/mês</span>
             )}
           </div>
-          {(property.condoFee || property.iptu) && (
+          {property.condoFee && (
             <div className="text-[11px] text-slate-token">
-              + Cond. {formatBRL(property.condoFee || 0)}
+              + Cond. {formatBRL(property.condoFee)}
             </div>
           )}
         </div>
+
+        {/* Title */}
         <h3 className="line-clamp-2 min-h-[2.5rem] text-sm font-semibold leading-snug text-ink">
           {property.title}
         </h3>
+
+        {/* Location */}
         <div className="flex items-center gap-1 text-xs text-slate-token">
-          <MapPin className="h-3.5 w-3.5 shrink-0" />
-          <span className="truncate">
-            {property.neighborhood}, {property.city}
-          </span>
+          <MapPin className="h-3.5 w-3.5 shrink-0 text-mint" />
+          <span className="truncate">{property.neighborhood}, {property.city}</span>
         </div>
+
+        {/* Verified badge */}
+        <div className="flex items-center gap-1 text-[11px] text-mint">
+          <ShieldCheck className="h-3.5 w-3.5" />
+          <span>Verificado</span>
+        </div>
+
+        {/* Specs */}
         <div className="mt-auto flex items-center gap-3 border-t border-fog pt-3 text-xs text-slate-token">
           <span className="flex items-center gap-1"><BedDouble className="h-3.5 w-3.5" />{property.bedrooms}</span>
           <span className="flex items-center gap-1"><Bath className="h-3.5 w-3.5" />{property.bathrooms}</span>

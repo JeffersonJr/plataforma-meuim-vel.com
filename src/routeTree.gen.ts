@@ -9,19 +9,55 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TourVirtualRouteImport } from './routes/tour-virtual'
+import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as LancamentosRouteImport } from './routes/lancamentos'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PropertyIdRouteImport } from './routes/property.$id'
 
+const TourVirtualRoute = TourVirtualRouteImport.update({
+  id: '/tour-virtual',
+  path: '/tour-virtual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LancamentosRoute = LancamentosRouteImport.update({
+  id: '/lancamentos',
+  path: '/lancamentos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastroRoute = CadastroRouteImport.update({
+  id: '/cadastro',
+  path: '/cadastro',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,40 +73,109 @@ const PropertyIdRoute = PropertyIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cadastro': typeof CadastroRoute
   '/dashboard': typeof DashboardRoute
+  '/favoritos': typeof FavoritosRoute
+  '/lancamentos': typeof LancamentosRoute
+  '/login': typeof LoginRoute
   '/search': typeof SearchRoute
+  '/sobre': typeof SobreRoute
+  '/tour-virtual': typeof TourVirtualRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cadastro': typeof CadastroRoute
   '/dashboard': typeof DashboardRoute
+  '/favoritos': typeof FavoritosRoute
+  '/lancamentos': typeof LancamentosRoute
+  '/login': typeof LoginRoute
   '/search': typeof SearchRoute
+  '/sobre': typeof SobreRoute
+  '/tour-virtual': typeof TourVirtualRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cadastro': typeof CadastroRoute
   '/dashboard': typeof DashboardRoute
+  '/favoritos': typeof FavoritosRoute
+  '/lancamentos': typeof LancamentosRoute
+  '/login': typeof LoginRoute
   '/search': typeof SearchRoute
+  '/sobre': typeof SobreRoute
+  '/tour-virtual': typeof TourVirtualRoute
   '/property/$id': typeof PropertyIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/search' | '/property/$id'
+  fullPaths:
+    | '/'
+    | '/cadastro'
+    | '/dashboard'
+    | '/favoritos'
+    | '/lancamentos'
+    | '/login'
+    | '/search'
+    | '/sobre'
+    | '/tour-virtual'
+    | '/property/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/search' | '/property/$id'
-  id: '__root__' | '/' | '/dashboard' | '/search' | '/property/$id'
+  to:
+    | '/'
+    | '/cadastro'
+    | '/dashboard'
+    | '/favoritos'
+    | '/lancamentos'
+    | '/login'
+    | '/search'
+    | '/sobre'
+    | '/tour-virtual'
+    | '/property/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/cadastro'
+    | '/dashboard'
+    | '/favoritos'
+    | '/lancamentos'
+    | '/login'
+    | '/search'
+    | '/sobre'
+    | '/tour-virtual'
+    | '/property/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CadastroRoute: typeof CadastroRoute
   DashboardRoute: typeof DashboardRoute
+  FavoritosRoute: typeof FavoritosRoute
+  LancamentosRoute: typeof LancamentosRoute
+  LoginRoute: typeof LoginRoute
   SearchRoute: typeof SearchRoute
+  SobreRoute: typeof SobreRoute
+  TourVirtualRoute: typeof TourVirtualRoute
   PropertyIdRoute: typeof PropertyIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tour-virtual': {
+      id: '/tour-virtual'
+      path: '/tour-virtual'
+      fullPath: '/tour-virtual'
+      preLoaderRoute: typeof TourVirtualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/search': {
       id: '/search'
       path: '/search'
@@ -78,11 +183,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lancamentos': {
+      id: '/lancamentos'
+      path: '/lancamentos'
+      fullPath: '/lancamentos'
+      preLoaderRoute: typeof LancamentosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastro': {
+      id: '/cadastro'
+      path: '/cadastro'
+      fullPath: '/cadastro'
+      preLoaderRoute: typeof CadastroRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,8 +237,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CadastroRoute: CadastroRoute,
   DashboardRoute: DashboardRoute,
+  FavoritosRoute: FavoritosRoute,
+  LancamentosRoute: LancamentosRoute,
+  LoginRoute: LoginRoute,
   SearchRoute: SearchRoute,
+  SobreRoute: SobreRoute,
+  TourVirtualRoute: TourVirtualRoute,
   PropertyIdRoute: PropertyIdRoute,
 }
 export const routeTree = rootRouteImport
