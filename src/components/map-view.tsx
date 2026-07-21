@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import "leaflet/dist/leaflet.css";
 import type { Property } from "@/lib/mock-data";
 
 type Props = {
@@ -107,6 +108,11 @@ export function MapView({ properties, selected, onSelect }: Props) {
         },
       });
       new DrawControl().addTo(map);
+
+      // Force recalculation to fix grey empty map bug in flex layouts
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 250);
     });
 
     return () => {

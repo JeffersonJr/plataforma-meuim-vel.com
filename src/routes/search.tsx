@@ -680,10 +680,10 @@ function SearchPage() {
       <Header />
 
       {/* Filter bar */}
-      <div className="sticky top-16 z-30 border-b border-fog bg-white/95 backdrop-blur">
-        <div className="container-page flex items-center gap-2 overflow-x-auto py-2.5 no-scrollbar">
+      <div className="sticky top-16 z-30 border-b border-fog bg-white backdrop-blur">
+        <div className="container-page flex items-center gap-3 overflow-x-auto py-3 no-scrollbar">
           {/* Mode toggle */}
-          <div className="flex shrink-0 gap-1 rounded-xl bg-secondary p-1">
+          <div className="flex shrink-0 items-center rounded-full bg-secondary p-1">
             {[
               { k: "rent", l: "Alugar" },
               { k: "buy", l: "Comprar" },
@@ -692,10 +692,10 @@ function SearchPage() {
                 key={t.k}
                 onClick={() => setFilters((f) => ({ ...f, mode: t.k as "rent" | "buy" }))}
                 className={cn(
-                  "rounded-lg px-3 py-1.5 text-xs font-semibold transition",
+                  "rounded-full px-4 py-1.5 text-xs font-semibold transition",
                   filters.mode === t.k
-                    ? "bg-white text-brand shadow-soft"
-                    : "text-slate-token",
+                    ? "bg-white text-ink shadow-soft"
+                    : "text-slate-token hover:text-ink",
                 )}
               >
                 {t.l}
@@ -704,13 +704,13 @@ function SearchPage() {
           </div>
 
           {/* Search */}
-          <div className="flex items-center gap-2 rounded-xl border border-fog px-3 py-2 w-44 shrink-0 focus-within:border-brand">
+          <div className="flex items-center gap-2 rounded-full border border-fog px-4 py-1.5 w-64 shrink-0 focus-within:border-brand transition">
             <Search className="h-3.5 w-3.5 shrink-0 text-slate-token" />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Bairro, cidade..."
-              className="w-full bg-transparent text-sm outline-none"
+              className="w-full bg-transparent text-sm outline-none placeholder:text-slate-token/70"
             />
           </div>
 
@@ -718,20 +718,22 @@ function SearchPage() {
           <select
             value={filters.bedrooms}
             onChange={(e) => setFilters((f) => ({ ...f, bedrooms: e.target.value }))}
-            className="shrink-0 rounded-xl border border-fog px-3 py-2 text-sm outline-none"
+            className="shrink-0 rounded-full border border-fog px-4 py-1.5 text-sm outline-none cursor-pointer hover:border-brand/40 transition appearance-none bg-no-repeat pr-8"
+            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`, backgroundPosition: 'right 12px center' }}
           >
             <option value="">Quartos</option>
-            <option value="1">1+</option>
-            <option value="2">2+</option>
-            <option value="3">3+</option>
-            <option value="4">4+</option>
+            <option value="1">1+ quartos</option>
+            <option value="2">2+ quartos</option>
+            <option value="3">3+ quartos</option>
+            <option value="4">4+ quartos</option>
           </select>
 
           {/* Quick price */}
           <select
             value={filters.maxPrice}
             onChange={(e) => setFilters((f) => ({ ...f, maxPrice: e.target.value }))}
-            className="shrink-0 rounded-xl border border-fog px-3 py-2 text-sm outline-none"
+            className="shrink-0 rounded-full border border-fog px-4 py-1.5 text-sm outline-none cursor-pointer hover:border-brand/40 transition appearance-none bg-no-repeat pr-8"
+            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`, backgroundPosition: 'right 12px center' }}
           >
             <option value="">Preço</option>
             {filters.mode === "rent" ? (
@@ -755,32 +757,30 @@ function SearchPage() {
           <button
             onClick={() => setShowMap((v) => !v)}
             className={cn(
-              "hidden shrink-0 items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-medium transition md:flex",
-              showMap ? "border-brand bg-brand/5 text-brand" : "border-fog text-slate-token",
+              "hidden shrink-0 items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm font-medium transition md:flex",
+              showMap ? "border-brand bg-brand/5 text-brand" : "border-fog text-ink hover:bg-secondary",
             )}
           >
-            <MapPin className="h-3.5 w-3.5" />
+            <MapPin className="h-4 w-4" />
             {showMap ? "Ocultar mapa" : "Ver no mapa"}
           </button>
 
           {/* Filtros avançados */}
-          <Button
-            size="sm"
-            variant="outline"
+          <button
             onClick={() => setShowFilters(true)}
             className={cn(
-              "ml-auto shrink-0 gap-1.5 rounded-xl text-xs font-semibold",
-              activeCount > 0 && "border-brand bg-brand/5 text-brand",
+              "ml-auto shrink-0 flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium transition",
+              activeCount > 0 ? "border-brand bg-brand text-white" : "border-fog text-ink hover:bg-secondary",
             )}
           >
-            <SlidersHorizontal className="h-3.5 w-3.5" />
+            <SlidersHorizontal className="h-4 w-4" />
             Filtros
             {activeCount > 0 && (
-              <span className="ml-1 rounded-full bg-brand px-1.5 py-0.5 text-[10px] font-bold text-white">
+              <span className="ml-1 rounded-full bg-white px-1.5 py-0.5 text-[10px] font-bold text-brand">
                 {activeCount}
               </span>
             )}
-          </Button>
+          </button>
         </div>
 
         {/* Active chips */}
