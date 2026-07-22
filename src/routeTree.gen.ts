@@ -42,6 +42,7 @@ import { Route as CentralDeAjudaRouteImport } from './routes/central-de-ajuda'
 import { Route as CalculadoraVendaRouteImport } from './routes/calculadora-venda'
 import { Route as CalculadoraIgpmRouteImport } from './routes/calculadora-igpm'
 import { Route as CalculadoraAluguelRouteImport } from './routes/calculadora-aluguel'
+import { Route as CadastroImovelRouteImport } from './routes/cadastro-imovel'
 import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as AreaProprietarioRouteImport } from './routes/area-proprietario'
 import { Route as AreaMeuimovelRouteImport } from './routes/area-meuimovel'
@@ -217,6 +218,11 @@ const CalculadoraAluguelRoute = CalculadoraAluguelRouteImport.update({
   path: '/calculadora-aluguel',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CadastroImovelRoute = CadastroImovelRouteImport.update({
+  id: '/cadastro-imovel',
+  path: '/cadastro-imovel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CadastroRoute = CadastroRouteImport.update({
   id: '/cadastro',
   path: '/cadastro',
@@ -271,6 +277,7 @@ export interface FileRoutesByFullPath {
   '/area-meuimovel': typeof AreaMeuimovelRoute
   '/area-proprietario': typeof AreaProprietarioRoute
   '/cadastro': typeof CadastroRoute
+  '/cadastro-imovel': typeof CadastroImovelRoute
   '/calculadora-aluguel': typeof CalculadoraAluguelRoute
   '/calculadora-igpm': typeof CalculadoraIgpmRoute
   '/calculadora-venda': typeof CalculadoraVendaRoute
@@ -315,6 +322,7 @@ export interface FileRoutesByTo {
   '/area-meuimovel': typeof AreaMeuimovelRoute
   '/area-proprietario': typeof AreaProprietarioRoute
   '/cadastro': typeof CadastroRoute
+  '/cadastro-imovel': typeof CadastroImovelRoute
   '/calculadora-aluguel': typeof CalculadoraAluguelRoute
   '/calculadora-igpm': typeof CalculadoraIgpmRoute
   '/calculadora-venda': typeof CalculadoraVendaRoute
@@ -360,6 +368,7 @@ export interface FileRoutesById {
   '/area-meuimovel': typeof AreaMeuimovelRoute
   '/area-proprietario': typeof AreaProprietarioRoute
   '/cadastro': typeof CadastroRoute
+  '/cadastro-imovel': typeof CadastroImovelRoute
   '/calculadora-aluguel': typeof CalculadoraAluguelRoute
   '/calculadora-igpm': typeof CalculadoraIgpmRoute
   '/calculadora-venda': typeof CalculadoraVendaRoute
@@ -406,6 +415,7 @@ export interface FileRouteTypes {
     | '/area-meuimovel'
     | '/area-proprietario'
     | '/cadastro'
+    | '/cadastro-imovel'
     | '/calculadora-aluguel'
     | '/calculadora-igpm'
     | '/calculadora-venda'
@@ -450,6 +460,7 @@ export interface FileRouteTypes {
     | '/area-meuimovel'
     | '/area-proprietario'
     | '/cadastro'
+    | '/cadastro-imovel'
     | '/calculadora-aluguel'
     | '/calculadora-igpm'
     | '/calculadora-venda'
@@ -494,6 +505,7 @@ export interface FileRouteTypes {
     | '/area-meuimovel'
     | '/area-proprietario'
     | '/cadastro'
+    | '/cadastro-imovel'
     | '/calculadora-aluguel'
     | '/calculadora-igpm'
     | '/calculadora-venda'
@@ -539,6 +551,7 @@ export interface RootRouteChildren {
   AreaMeuimovelRoute: typeof AreaMeuimovelRoute
   AreaProprietarioRoute: typeof AreaProprietarioRoute
   CadastroRoute: typeof CadastroRoute
+  CadastroImovelRoute: typeof CadastroImovelRoute
   CalculadoraAluguelRoute: typeof CalculadoraAluguelRoute
   CalculadoraIgpmRoute: typeof CalculadoraIgpmRoute
   CalculadoraVendaRoute: typeof CalculadoraVendaRoute
@@ -809,6 +822,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculadoraAluguelRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cadastro-imovel': {
+      id: '/cadastro-imovel'
+      path: '/cadastro-imovel'
+      fullPath: '/cadastro-imovel'
+      preLoaderRoute: typeof CadastroImovelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cadastro': {
       id: '/cadastro'
       path: '/cadastro'
@@ -883,6 +903,7 @@ const rootRouteChildren: RootRouteChildren = {
   AreaMeuimovelRoute: AreaMeuimovelRoute,
   AreaProprietarioRoute: AreaProprietarioRoute,
   CadastroRoute: CadastroRoute,
+  CadastroImovelRoute: CadastroImovelRoute,
   CalculadoraAluguelRoute: CalculadoraAluguelRoute,
   CalculadoraIgpmRoute: CalculadoraIgpmRoute,
   CalculadoraVendaRoute: CalculadoraVendaRoute,

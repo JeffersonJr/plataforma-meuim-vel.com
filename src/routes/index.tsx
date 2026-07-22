@@ -28,15 +28,17 @@ function Home() {
       <Header />
 
       {/* Hero — Quinto Andar Style */}
-      <section className="relative overflow-hidden min-h-[90vh] flex items-center bg-secondary">
+      <section className="relative overflow-hidden min-h-[90vh] flex items-center bg-ink">
         {/* Background photo - Family */}
-        <div className="absolute inset-0 lg:left-1/3 lg:inset-y-0 lg:right-0">
+        <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=2000&q=80"
             alt="Família na mesa do café da manhã"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/80 to-transparent lg:via-secondary/20" />
+          {/* Gradient to make the left side darker for the search bar to pop out, and text readable */}
+          <div className="absolute inset-0 bg-black/40 lg:bg-transparent" />
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         </div>
 
         <div className="container-page relative z-10 flex flex-col items-start justify-center py-20 min-h-screen lg:min-h-[90vh]">
